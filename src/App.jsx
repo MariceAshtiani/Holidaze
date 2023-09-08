@@ -1,9 +1,18 @@
+import { Routes, Route } from "react-router-dom";
+import Layout from "./Components/Layout"
+import Home from "./Pages/Home";
+import Register from "./Pages/Register";
 
-function App() {
+
+export default function App() {
 
   return (
-    <h1>Project Exam</h1>
+    <Routes>
+      <Route path="/">
+        <Route index element={<Home />} />
+        <Route path="Register" element={<Register />} />
+      </Route>
+    </Routes>
   )
 }
 
-export default App
