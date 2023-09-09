@@ -69,15 +69,12 @@ const GlobalStyle = createGlobalStyle`
     }
 
     .registerMain {
-        background-image: URL("/Images/AdobeStock_259216218_Preview.jpeg");
-        height: 90vh;
+        background-image: URL("/Images/background-image.jpg");
+        height: 120vh;
+        max-width: 2000px;
+        width: 100%;
         background-repeat: no-repeat;
     }
-
-    .registerForm {
-        backdrop-filter: blur(10px);
-    }
-
 
     .mainContainer {
         display: flex;

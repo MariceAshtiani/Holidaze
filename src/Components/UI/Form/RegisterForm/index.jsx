@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { userRegistration } from "../../../../Api/Auth/register";
 import StyledForm from "./styled";
+import BasicButton from "../../Buttons/styled";
+import Checkbox from "../../Checkbox";
 
 export default function RegistrationForm() {
     const navigate = useNavigate();
@@ -99,14 +101,15 @@ export default function RegistrationForm() {
                     </label>
                 </div>
                 <div>
-                    <button type="button" onClick={handleRegistration}>
+                    <BasicButton type="button" onClick={handleRegistration}>
                         Register
-                    </button>
+                    </BasicButton>
                 </div>
                 {registrationStatus && <p>{registrationStatus}</p>}
-                <div>
-                    <span>Already have an account?</span>
-                    <a href="/login">Sing in here!</a>
+               
+                <div className="goToSignin">
+                    <p>Already have an account?</p>
+                    <a href="/Login">Sign in here!</a>
                 </div>
             </StyledForm>
         </div>
