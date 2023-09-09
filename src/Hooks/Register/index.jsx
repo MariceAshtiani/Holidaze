@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import BasicButton from "../../Components/UI/Buttons/styled";
@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 //Validation schema using Yup
 
-const schema = yup.object().shape({
+const schema = yup.object({
     name: yup.string()
         .required("Please enter your name")
         .matches(
@@ -28,13 +28,15 @@ const schema = yup.object().shape({
     avatar: yup.string()
         .url("Please enter a valid URL"),
     venueManager: yup.boolean()
-});
+        });
 
 export default function RegistrationHook() {
-    const { register, handleSubmit, control, errors } = useForm({
+    const navigate = useNavigate();
+
+    const { register, handleSubmit, formState: { errors }, control } = useForm({
         resolver: yupResolver(schema)
     });
-    const navigate = useNavigate();
+    
 
     const onSubmit = async (data) => {
         //Send to the API
@@ -61,26 +63,26 @@ export default function RegistrationHook() {
         <form onSubmit={handleSubmit(onSubmit)}>
             <div>
                 <label>Name:</label>
-                <input name="name" ref={register} />
-                {errors.name && <p>{errors.name.message}</p>}
+                <input {...register("name")} />
+                <p>{errors.name?.message}</p>
             </div>
 
             <div>
                 <label>Email:</label>
-                <input name="email" ref={register} />
-                {errors.email && <p>{errors.email.message}</p>}
+                <input {...register("email")} />
+                <p>{errors.email?.message}</p>
             </div>
 
             <div>
                 <label>Password:</label>
-                <input type="password" name="password" reg={register} />
-                {errors.password && <p>{errors.password.message}</p>}
+                <input {...register("password")} />
+                <p>{errors.password.message}</p>
             </div>
 
             <div>
                 <label>Avatar:</label>
-                <input type="url" name="avatar" reg={register} />
-                {errors.avatar && <p>{errors.password.message}</p>}
+                <input {...register("avatar")} />
+                <p>{errors.password.message}</p>
             </div>
 
             <div>
