@@ -6,6 +6,7 @@ export default styled.div`
 
     img {
         max-width: 300px;
-        margin-bottom: 10%;
+        margin-bottom: 5%;
+        margin-top: 5%;
     }
 `;

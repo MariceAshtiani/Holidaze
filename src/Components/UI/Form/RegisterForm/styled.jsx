@@ -14,29 +14,40 @@ export default styled.form`
     backdrop-filter: blur(10px);
     background-color: rgba(248,207,153,0.5);
 
-
-    div {
-        display: flex;
-        gap: 20px;
+    h1 {
+        margin-bottom: 5%;
     }
 
     .input-group {
         flex-direction: column;
         margin-bottom: 20px;
+        max-width: 90%;
+        margin: 0 auto;
     }
 
     label {
-        flex: 1;
         font-weight: 700;
     }
 
     input {
-        flex: 2;
         width: 100%;
         height: 2rem;
         border: 1px solid black;
         border-radius: 10px;
         text-indent: 15px;
+    }
+
+    .venueManagerOption {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 80px;
+        margin: 0 auto;
+    }
+
+    .venueManagerCheckbox {
+        cursor: pointer;
+        
     }
 
     button {
@@ -49,11 +60,50 @@ export default styled.form`
         margin: 0 auto;
         text-align: center;
         font-weight: 700;
+        margin-bottom: 10px;
 
         a {
             text-decoration: underline;
             font-style: italic;
             font-weight: 600;
+            color: blue;
         }
     }
+
+
+    .registerFormError{
+        color: red;
+        margin-top: 10px;
+    }
+
+    @media (max-width: ${({ theme }) => theme.tablet}) {
+
+        label {
+            font-size:1rem;
+        }
+
+        button {
+            margin-top: 30px;
+        }
+    }
+
+    @media (max-width: ${({ theme }) => theme.mobile}) {
+
+        .input-group div {
+            display: block;
+            max-width: 100%;
+        }
+
+        h1{ 
+            font-size: 2rem;
+        }
+
+        label {
+            font-size: 1.5;
+        }
+
+        button {
+            margin-top: 30px;
+        }
+}
 `;

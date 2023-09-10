@@ -10,7 +10,7 @@ export default function App() {
     <Routes>
       <Route path="/">
         <Route index element={<Home />} />
-        <Route path="Register" element={<Register />} />
+        <Route path="register" element={<Register />} />
       </Route>
     </Routes>
   )

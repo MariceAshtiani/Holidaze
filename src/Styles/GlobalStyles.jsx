@@ -98,7 +98,6 @@ const GlobalStyle = createGlobalStyle`
         }
 
         @media (max-width: ${({ theme }) => theme.tablet}) {
-            flex-direction: column;
 
             h1 {
             font-size: 2.5rem;
