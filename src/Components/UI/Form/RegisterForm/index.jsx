@@ -99,7 +99,7 @@ export default function RegistrationForm() {
 
             <div>
                 <label>Password:</label>
-                <input {...register("password")} />
+                <input {...register("password")} type="password" />
                 <p className="registerFormError">{errors.password?.message}</p>
             </div>
 
