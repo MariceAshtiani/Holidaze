@@ -5,10 +5,9 @@ import * as yup from "yup";
 import BasicButton from "../../Buttons/styled";
 import { userRegistration } from "../../../../Api/Auth/register";
 import StyledForm from "./styled";
-import { RegistrationSuccessModal } from "./modal.styled";
+import { RegistrationSuccessModal, ErrorModal } from "../../../../Styles/ModalStyles";
 import { useState } from "react";
 import ReactModal from "react-modal";
-import { ErrorModal } from "./modal.styled";
 
 //Validation schema using Yup
 
