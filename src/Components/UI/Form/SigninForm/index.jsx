@@ -7,6 +7,8 @@ import { userLogin } from "../../../../Api/Auth/login";
 import StyledForm from "../RegisterForm/styled";
 import ReactModal from "react-modal";
 import { ErrorModal } from "../../../../Styles/ModalStyles";
+import { useUserStore } from "../../../../Hooks/userStore";
+import { useNavigate } from "react-router-dom";
 
 //Validation schema using Yup
 
@@ -27,6 +29,7 @@ export default function LoginForm() {
 
     const [errorMessage, setErrorMessage] = useState("");
     const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
+    const navigate = useNavigate();
 
     ReactModal.setAppElement("#root");
 
@@ -44,7 +47,16 @@ export default function LoginForm() {
                 data.password,
             );
 
+            const user = response;
+            console.log(user);
+            const isVenueManager = user.isVenueManager;
+
+            // Save user details in Zustand store
+            useUserStore.setState({ user, isLoggedIn: true, isVenueManager });
             console.log(response);
+
+            //redirect if login is ok
+            navigate("/Profile");
 
         } catch (error) {
             console.error("An error occured calling the API", error);
