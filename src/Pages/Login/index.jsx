@@ -10,7 +10,7 @@ export default function LoginPage() {
                     <title>Holidaze | Sign in</title>
                 </Helmet>
             </HelmetProvider>
-            <main className="loginMain">
+            <main className="registerMain">
             <Logo></Logo>
                 <div className="loginForm">
                     <div className="mainContainer">

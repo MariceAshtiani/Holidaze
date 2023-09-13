@@ -6,7 +6,7 @@ import BasicButton from "../../Buttons/styled";
 import { userLogin } from "../../../../Api/Auth/login";
 import StyledForm from "../RegisterForm/styled";
 import ReactModal from "react-modal";
-import ModalStyles from "../../../../Styles/ModalStyles";
+import { ErrorModal } from "../../../../Styles/ModalStyles";
 
 //Validation schema using Yup
 
@@ -50,7 +50,6 @@ export default function LoginForm() {
             console.error("An error occured calling the API", error);
             setErrorMessage("Log in failed. Please check your credentials");
             setIsErrorModalOpen(true);
-            console.log(setIsErrorModalOpen);
         }
     };
 
