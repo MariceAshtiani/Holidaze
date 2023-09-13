@@ -18,7 +18,7 @@ export default function DropdownMenu({ items }) {
                 <ul className="dropdown-menu">
                     {items.map((item) => (
                         <li key={item.id}>
-                            <NavLink to={item.link}>{item.label}</NavLink>
+                            <NavLink to={item.link} className="nav-link">{item.label}</NavLink>
                         </li>
                     ))}
                 </ul>

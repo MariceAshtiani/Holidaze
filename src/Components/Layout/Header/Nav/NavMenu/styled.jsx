@@ -19,7 +19,7 @@ export default styled.div`
             color: darkorange;
         }
 
-    .nav-links li:hover a{
+    .nav-link:hover {
         color: white;
     }
 

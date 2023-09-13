@@ -15,13 +15,12 @@ export default styled.div`
 
 .dropdown-menu {
   position: absolute;
-  top: 100%;
-  left: 0;
   background-color: #F8CF99;
   list-style: none;
   padding: 0;
   margin: 0;
   padding-top: 20px;
+  
 }
 
 .dropdown-menu li {
@@ -30,7 +29,7 @@ export default styled.div`
 
 .dropdown-menu a {
   text-decoration: none;
-  color: #333;
+  color: darkorange;
   font-size: 1rem;
   padding: 0;
 }
