@@ -49,7 +49,7 @@ export default styled.div`
         right: 0;
         top: 50px;
         z-index: 10;
-        padding: 20px 10px;
+        padding: 30px 10px;
     }
 
 
@@ -69,8 +69,13 @@ export default styled.div`
             width: 50px;
         }
 
+
         .close-icon {
         margin-top: 0;
+    }
+
+    .column-layout {
+        top: 30px;
     }
 
         ul {
