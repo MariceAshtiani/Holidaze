@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useUserStore } from "../../../../../Hooks/userStore"; 
 import StyledMenu from "./styled.jsx";
 import DropdownMenu from "./Dropdown";
@@ -14,56 +14,111 @@ export default function NavMenu() {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };
 
+    // Media query to check screen width
+    const isMobileScreen = window.innerWidth <= 700;
+
 
     return (
         <StyledMenu>
             <div className="menu">
-
-                {/* Hamburger menu button */}
-                <button className="mobileMenu-button" onClick={toggleMobileMenu}>
-                    <FaBars />
-                </button>
-
-            <ul className="nav-links">
-                <li>
-                    <NavLink to="/" className="nav-link">Home</NavLink>
-                </li>
-                {isLoggedIn ? (
+                {isMobileScreen ? (
+                    // Render hamburger menu when on mobile screen
                     <>
-                    <li>
-                        <DropdownMenu
-                        items={
-                            isVenueManager 
-                            ? [
-                                { id: 1, label: "View Profile", link: "/Profile" },
-                                { id: 2, label: "Your Venues", link: "/#" },
-                                { id: 3, label: "Log out", link: "/#" },
-                            ]
-                            : [
-                                { id: 1, label: "View Profile", link: "/Profile" },
-                                { id: 2, label: "Your Bookings", link: "/#" },
-                                { id: 3, label: "Log out", link: "/#" },
-                            ]
-                        }
-                        />
-                    </li>
-                    <li>
-                        <NavLink to="/Listings" className="nav-link">Listings</NavLink>
-                    </li>
+                        <div className="mobile-header">
+                            {isMobileMenuOpen ? (
+                                <FaTimes onClick={toggleMobileMenu} className="menu-icon close-icon" />
+                            ) : (
+                                <FaBars onClick={toggleMobileMenu} className="menu-icon open-icon" />
+                            )}
+                        </div>
+                        {isMobileMenuOpen && (
+                            <ul className="nav-links column-layout">
+                                <li>
+                                    <NavLink to="/" className="nav-link">Home</NavLink>
+                                </li>
+                                {isLoggedIn ? (
+                                    <>
+                                        <li>
+                                            <DropdownMenu
+                                                items={
+                                                    isVenueManager 
+                                                    ? [
+                                                        { id: 1, label: "View Profile", link: "/Profile" },
+                                                        { id: 2, label: "Your Venues", link: "/#" },
+                                                        { id: 3, label: "Log out", link: "/#" },
+                                                    ]
+                                                    : [
+                                                        { id: 1, label: "View Profile", link: "/Profile" },
+                                                        { id: 2, label: "Your Bookings", link: "/#" },
+                                                        { id: 3, label: "Log out", link: "/#" },
+                                                    ]
+                                                }
+                                            />
+                                        </li>
+                                        <li>
+                                            <NavLink to="/Listings" className="nav-link">Listings</NavLink>
+                                        </li>
+                                    </>
+                                ) : (
+                                    <>
+                                        <li>
+                                            <NavLink to="/Register" className="nav-link">Register</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/Login" className="nav-link">Sign in</NavLink>
+                                        </li>
+                                    </>
+                                )}
+                            </ul>
+                        )}
                     </>
                 ) : (
-                    <>
-                    <li>
-                        <NavLink to="/Register" className="nav-link">Register</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/Login" className="nav-link">Sign in</NavLink>
-                    </li>
-                    </>
+                    // Render desktop menu for screens larger than 500px
+                    <ul className="nav-links">
+                        <li>
+                            <NavLink to="/" className="nav-link">Home</NavLink>
+                        </li>
+                        {isLoggedIn ? (
+                            <>
+                                <li>
+                                    <DropdownMenu
+                                        items={
+                                            isVenueManager 
+                                            ? [
+                                                { id: 1, label: "View Profile", link: "/Profile" },
+                                                { id: 2, label: "Your Venues", link: "/#" },
+                                                { id: 3, label: "Log out", link: "/#" },
+                                            ]
+                                            : [
+                                                { id: 1, label: "View Profile", link: "/Profile" },
+                                                { id: 2, label: "Your Bookings", link: "/#" },
+                                                { id: 3, label: "Log out", link: "/#" },
+                                            ]
+                                        }
+                                    />
+                                </li>
+                                <li>
+                                    <NavLink to="/Listings" className="nav-link">Listings</NavLink>
+                                </li>
+                            </>
+                        ) : (
+                            <>
+                                <li>
+                                    <NavLink to="/Register" className="nav-link">Register</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/Login" className="nav-link">Sign in</NavLink>
+                                </li>
+                            </>
+                        )}
+                    </ul>
                 )}
-            </ul>
             </div>
         </StyledMenu>
-        
     );
 }
+
+
+
+
+

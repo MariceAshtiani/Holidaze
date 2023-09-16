@@ -8,5 +8,6 @@ export default styled.header`
     flex-direction: row;
     background-color: #F8CF99;
     width: 100%;
+    padding: 10px;
 
 `;
