@@ -5,7 +5,8 @@ export default styled.div`
     text-align: center;
 
     img {
-        max-width: 300px;
+        max-width: 500px;
+        width: 100%;
         margin-bottom: 5%;
         margin-top: 5%;
     }
