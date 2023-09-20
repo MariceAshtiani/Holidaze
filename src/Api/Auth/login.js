@@ -9,7 +9,6 @@ export async function userLogin(email, password) {
 
     try {
         
-
         const response = await fetch(Url + endPoint, {
             method: "POST",
             headers: {
@@ -25,10 +24,12 @@ export async function userLogin(email, password) {
 
         if (response.ok) {
             return data;
+        } else {
+            throw new Error(data?.errors[0]?.message ?? "An error occurred trying to log in");
         }
         
     } catch(error) {
 
-        throw new Error(data?.errors[0]?.message ?? "An error occurred trying to log in");
+        throw new Error(error.message || "An error occurred trying to log in");
     }
 };

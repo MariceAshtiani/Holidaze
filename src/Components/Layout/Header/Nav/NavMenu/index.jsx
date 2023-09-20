@@ -7,7 +7,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 
 export default function NavMenu() {
     const isLoggedIn = useUserStore((state) => state.isLoggedIn);
-    const isVenueManager = useUserStore((state) => state.isVenueManager);
+    const isVenueManager = useUserStore((state) => state.user?.venueManager);
     const { logout } = useUserStore();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const navigate = useNavigate();
