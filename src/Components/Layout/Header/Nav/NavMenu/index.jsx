@@ -1,14 +1,18 @@
-import { NavLink } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { useUserStore } from "../../../../../Hooks/userStore"; 
 import StyledMenu from "./styled.jsx";
 import DropdownMenu from "./Dropdown";
-import { FaBars, FaTimes } from "react-icons/fa"
+import { FaBars, FaTimes } from "react-icons/fa";
 
 export default function NavMenu() {
     const isLoggedIn = useUserStore((state) => state.isLoggedIn);
     const isVenueManager = useUserStore((state) => state.isVenueManager);
+    const { logout } = useUserStore();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const navigate = useNavigate();
+
+    console.log("Hello", isVenueManager);
 
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -16,6 +20,12 @@ export default function NavMenu() {
 
     // Media query to check screen width
     const isMobileScreen = window.innerWidth <= 900;
+
+    const handleLogout = () => {
+        //Call the logout action to log the user out
+        logout();
+        navigate("/"); //Navigate to the homepage
+    };
 
 
     return (
@@ -39,31 +49,31 @@ export default function NavMenu() {
                                 {isLoggedIn ? (
                                     <>
                                         <li>
-                                            <NavLink to="/Listings" className="nav-link">Listings</NavLink>
+                                            <NavLink to="/listings" className="nav-link">Listings</NavLink>
                                         </li>
                                         <li>
-                                            <NavLink to="/Profile" className="nav-link">Profile</NavLink>
+                                            <NavLink to="/profile" className="nav-link">Profile</NavLink>
                                         </li>
                                         {isVenueManager ? (
                                             <li>
-                                                <NavLink to="/YourVenues" className="nav-link">Your Venues</NavLink>
+                                                <NavLink to="/venues" className="nav-link">Your Venues</NavLink>
                                             </li>
                                         ) : (
                                             <li>
-                                                <NavLink to="YourBookings" className="nav-link">Your Bookings</NavLink>
+                                                <NavLink to="bookings" className="nav-link">Your Bookings</NavLink>
                                             </li>
                                         )}
                                         <li>
-                                            <NavLink to="Logout" className="nav-link">Log Out</NavLink>
+                                            <button className="nav-link logoutButton" onClick={handleLogout}>Log Out</button>
                                         </li>
                                     </>
                                 ) : (
                                     <>
                                         <li>
-                                            <NavLink to="/Register" className="nav-link">Register</NavLink>
+                                            <NavLink to="/register" className="nav-link">Register</NavLink>
                                         </li>
                                         <li>
-                                            <NavLink to="/Login" className="nav-link">Sign in</NavLink>
+                                            <NavLink to="/login" className="nav-link">Sign in</NavLink>
                                         </li>
                                     </>
                                 )}
@@ -79,33 +89,34 @@ export default function NavMenu() {
                         {isLoggedIn ? (
                             <>
                             <li>
-                                <NavLink to="/Listings" className="nav-link">Listings</NavLink>
+                                <NavLink to="/listings" className="nav-link">Listings</NavLink>
                             </li>
                                 <li>
                                     <DropdownMenu
                                         items={
                                             isVenueManager 
                                             ? [
-                                                { id: 1, label: "View Profile", link: "/Profile" },
-                                                { id: 2, label: "Your Venues", link: "/YourVenues" },
-                                                { id: 3, label: "Log out", link: "#" },
+                                                { id: 1, label: "View Profile", link: "/profile" },
+                                                { id: 2, label: "Your Venues", link: "/venues" },
                                             ]
                                             : [
-                                                { id: 1, label: "View Profile", link: "/Profile" },
-                                                { id: 2, label: "Your Bookings", link: "/YourBookings" },
-                                                { id: 3, label: "Log out", link: "#" },
+                                                { id: 1, label: "View Profile", link: "/profile" },
+                                                { id: 2, label: "Your Bookings", link: "/bookings" },
                                             ]
                                         }
                                     />
+                                </li>
+                                <li>
+                                    <button className="nav-link logoutButton" onClick={handleLogout}>Log Out</button>
                                 </li>
                             </>
                         ) : (
                             <>
                                 <li>
-                                    <NavLink to="/Register" className="nav-link">Register</NavLink>
+                                    <NavLink to="/register" className="nav-link">Register</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/Login" className="nav-link">Sign in</NavLink>
+                                    <NavLink to="/login" className="nav-link">Sign in</NavLink>
                                 </li>
                             </>
                         )}
@@ -115,8 +126,3 @@ export default function NavMenu() {
         </StyledMenu>
     );
 }
-
-
-
-
-

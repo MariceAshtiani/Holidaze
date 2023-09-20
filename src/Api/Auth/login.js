@@ -6,9 +6,10 @@ const Url = baseUrl;
 const endPoint = loginAuth;
 
 export async function userLogin(email, password) {
-    console.log(email, password);
 
     try {
+        
+
         const response = await fetch(Url + endPoint, {
             method: "POST",
             headers: {
@@ -21,8 +22,13 @@ export async function userLogin(email, password) {
         });
 
         const data = await response.json();
-        return data;
-    } catch (error) {
-        return error;
+
+        if (response.ok) {
+            return data;
+        }
+        
+    } catch(error) {
+
+        throw new Error(data?.errors[0]?.message ?? "An error occurred trying to log in");
     }
 };

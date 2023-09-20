@@ -33,7 +33,7 @@ export default function LoginForm() {
 
     ReactModal.setAppElement("#root");
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit, formState: { errors }, } = useForm({
         resolver: yupResolver(schema)
     });
     
@@ -42,25 +42,23 @@ export default function LoginForm() {
     const onSubmit = async (data) => {
         //Send to the API
         try {
-            const response = await userLogin(
+            const user = await userLogin(
                 data.email,
                 data.password,
             );
-
-            const user = response;
             console.log(user);
             const isVenueManager = user.isVenueManager;
 
+
             // Save user details in Zustand store
             useUserStore.setState({ user, isLoggedIn: true, isVenueManager });
-            console.log(response);
 
             //redirect if login is ok
-            navigate("/Profile");
+            navigate("/profile");
 
         } catch (error) {
-            console.error("An error occured calling the API", error);
-            setErrorMessage("Log in failed. Please check your credentials");
+            console.error( error);
+            setErrorMessage(error.message);
             setIsErrorModalOpen(true);
         }
     };

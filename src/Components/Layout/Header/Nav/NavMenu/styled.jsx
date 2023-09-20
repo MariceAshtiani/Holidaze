@@ -52,6 +52,19 @@ export default styled.div`
         padding: 30px 10px;
     }
 
+    .logoutButton {
+        border: none;
+        background-color: #F8CF99;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: darkorange;
+        cursor: pointer;
+    }
+
+    .logoutButton:hover {
+        color: darkred;
+    }
+
 
     @media (max-width: ${({ theme }) => theme.tablet}) {
         ul {

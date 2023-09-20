@@ -1,5 +1,5 @@
 
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import BasicButton from "../../Buttons/styled";
@@ -41,7 +41,7 @@ export default function RegistrationForm() {
 
     ReactModal.setAppElement("#root");
 
-    const { register, handleSubmit, formState: { errors }, control } = useForm({
+    const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
     });
     
@@ -49,14 +49,8 @@ export default function RegistrationForm() {
     const onSubmit = async (data) => {
         //Send to the API
         try {
-            const response = await userRegistration(
-
-                data.name,
-                data.email,
-                data.password,
-                data.avatar,
-                data.venueManager
-            );
+            const { name, email, password, avatar, venueManager } = data
+            const response = await userRegistration(name, email, password, avatar, venueManager);
 
             console.log(response);
 
@@ -64,8 +58,8 @@ export default function RegistrationForm() {
             setSuccessMessage("Registration Successful!")
 
         } catch (error) {
-            console.error("An error occured calling the API", error);
-            setErrorMessage("Registration failed. Please try again.");
+            console.error( error);
+            setErrorMessage(error.message);
             setIsErrorModalOpen(true);
         }
     };
@@ -111,18 +105,7 @@ export default function RegistrationForm() {
 
             <div className="venueManagerOption">
                 <label>I am a venue manager:</label>
-                <Controller
-                    name="venueManager"
-                    control={control}
-                    render={({ onChange, value }) => (
-                        <input
-                        type="checkbox"
-                        className="venueManagerCheckbox"
-                        checked={value}
-                        onChange={(e) => onChange(e.target.checked)}
-                        />
-                    )}
-                />
+                <input type="checkbox" className="venueManagerCheckbox" {...register("venueManager")} />
 
             </div>
             <BasicButton type="submit">Register</BasicButton>

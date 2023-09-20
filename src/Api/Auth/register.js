@@ -8,13 +8,14 @@ const endPoint = regAuth;
 export async function userRegistration(name, email, password, avatar, isVenueManager) {
     console.log(name, email, password, avatar, isVenueManager);
 
-    try {
+    try{
+
         const registrationData = {
             name: name,
             email: email,
             password: password,
             avatar: avatar || null,
-            venueManager: isVenueManager || false,
+            venueManager: isVenueManager,
         };
 
 
@@ -26,15 +27,12 @@ export async function userRegistration(name, email, password, avatar, isVenueMan
             body: JSON.stringify(registrationData),
         });
 
-        if (!response.ok) {
-            throw new Error("Request failed with status: " + response.status + " " + response.statusText);
-        }
-
         const data = await response.json();
-        console.log(data);
 
+        if (response.ok) {
         return data;
-    } catch (error) {
-        throw error;
+        }
+    } catch(error) {
+        throw new Error(data?.errors[0]?.message ?? "An error occurred during registration");
     }
 };
