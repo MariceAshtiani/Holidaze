@@ -1,11 +1,25 @@
-import ApiHook from "../../Hooks/apiFetch";
-import Loader from "../../Components/UI/Loader";
-
-import Hero from "../../Components/UI/Hero";
+import { useEffect } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
+import ApiHook from "../../Hooks/apiFetch";
+import { venues } from "../../Api/constants";
+import { useQueryStore } from "../../Hooks/queryStore";
+
+import Loader from "../../Components/UI/Loader";
+import VenueList from "../../Components/UI/Venues";
+// import Search from
+import StyledHeadline from "./styled";
+import Hero from "../../Components/UI/Hero";
+
+
 export default function Home() {
-    const { data, isLoading, isError } = ApiHook();
+    const apiUrl = venues;
+    const { data, isLoading, isError } = ApiHook(apiUrl);
+    const { query, setQuery } = useQueryStore();
+
+    useEffect(() => {
+        setQuery(data);
+    }, [data]);
 
     if (isLoading) {
         return <Loader />
@@ -27,6 +41,10 @@ export default function Home() {
             <section>
                 <Hero />
             </section>
+            <main>
+                <StyledHeadline>Browse Venues</StyledHeadline>
+                <section>{<VenueList venues={query} />}</section>
+            </main>
         </div>
     )
 }
