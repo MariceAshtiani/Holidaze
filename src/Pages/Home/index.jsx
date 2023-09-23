@@ -7,7 +7,7 @@ import { useQueryStore } from "../../Hooks/queryStore";
 
 import Loader from "../../Components/UI/Loader";
 import VenueList from "../../Components/UI/Venues";
-// import Search from
+import Search from "../../Components/UI/Search";
 import StyledHeadline from "./styled";
 import Hero from "../../Components/UI/Hero";
 
@@ -36,6 +36,7 @@ export default function Home() {
                     <meta
                         name="description"
                         content="Holidaze is the perfect site for finding accomodation for your holiday"></meta>
+                    <link rel="stylesheet" href="https://use.typekit.net/qjo5cgi.css"></link>
                 </Helmet>
             </HelmetProvider>
             <section>
@@ -43,6 +44,7 @@ export default function Home() {
             </section>
             <main>
                 <StyledHeadline>Browse Venues</StyledHeadline>
+                <Search data={data} />
                 <section>{<VenueList venues={query} />}</section>
             </main>
         </div>

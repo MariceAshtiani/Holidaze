@@ -8,4 +8,5 @@ export const LoaderContainer = styled.div`
     width: 150px;
     height: 150px;
     animation: spin 2s linear infinite;
+    margin: 0 auto;
 `;
