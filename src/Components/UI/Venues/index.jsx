@@ -46,6 +46,7 @@ export default function VenueList(props) {
                 title={venue.name}
                 price={venue.price}
                 img={venue.imageUrl}
+                meta={venue.meta}
                 />
             ))
             

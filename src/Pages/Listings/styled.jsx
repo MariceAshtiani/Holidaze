@@ -14,5 +14,4 @@ export default styled.h2`
     @media (max-width: ${({ theme }) => theme.mobile }) {
         font-size: 1.5rem;
     }
-    
 `
