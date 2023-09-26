@@ -4,6 +4,8 @@ import Home from "./Pages/Home";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
 import Profile from "./Pages/Profile";
+import Listings from "./Pages/Listings";
+import VenuePage from "./Pages/Listing";
 
 
 export default function App() {
@@ -15,6 +17,8 @@ export default function App() {
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="listings" element={<Listings />} />
+        <Route path="listing/:id" element={<VenuePage />} />
       </Route>
     </Routes>
   )
