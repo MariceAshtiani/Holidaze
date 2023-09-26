@@ -22,19 +22,14 @@ export default styled.div`
         overflow: hidden;
     }
 
-    .productCardText {
+    .venueCardText {
         color: black;
         padding: 10px;
     }
 
-    span {
-        display: block;
-        position: absolute;
-        width: 100%;
-        color: red;
-        font-size: 2rem;
-        font-weight: bolder;
-        text-align: center;
+    .meta {
+        display: flex;
+        flex-direction: row;
     }
 
     p {
