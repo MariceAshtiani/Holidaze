@@ -31,8 +31,11 @@ export async function userRegistration(name, email, password, avatar, isVenueMan
 
         if (response.ok) {
         return data;
+        } else {
+            throw new Error(data?.errors[0]?.message ?? "An error occurred during registration");
+
         }
     } catch(error) {
-        throw new Error(data?.errors[0]?.message ?? "An error occurred during registration");
+        throw new Error("An error occurred during registration");
     }
 };
