@@ -1,10 +1,9 @@
-import { useUserStore } from "../../Hooks/userStore";
+
 import { profileUrl } from "../../Api/constants";
 
-export const HandleUpdateProfile = async (name, formData) => {
-    const accessToken = useUserStore((state) => state.user.accessToken);
+export const HandleUpdateProfile = async (name, formData, accessToken) => {
     try {
-        const endpoint = `${profileUrl}/${name}`;
+        const endpoint = `${profileUrl}/${name}/media`;
 
         //Send a PUT request to the API with the updated data
         const response = await fetch(endpoint, {
@@ -13,7 +12,7 @@ export const HandleUpdateProfile = async (name, formData) => {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${accessToken}`,
             },
-            body: JSON.stringify(formData),
+            body: JSON.stringify({ avatar: formData.avatar }),
         });
 
         //Check if the request was successful
@@ -25,7 +24,7 @@ export const HandleUpdateProfile = async (name, formData) => {
         const updatedProfile = await response.json();
         return updatedProfile;
     } catch (error) {
-        console.error("Error updating profile:", error);
+        console.error("Error updating profile:", error.message);
         throw error;
     }
 };

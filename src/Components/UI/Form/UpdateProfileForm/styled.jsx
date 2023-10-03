@@ -51,20 +51,6 @@ export default styled.div`
             margin: 20px;
             text-align: left;
         }
-
-        .VM-checkbox {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-
-            label {
-                line-height: 2;
-            }
-
-            input {
-                width: 30%;
-            }
-
-        }
+        
     }
 `;

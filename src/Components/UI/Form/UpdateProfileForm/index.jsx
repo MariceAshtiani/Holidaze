@@ -6,18 +6,18 @@ import BasicButton from "../../Buttons/styled";
 
 export default function ProfileForm() {
     const [formData, setFormData] = useState({
-        venueManager: false,
         avatar: "",
     });
 
     const setUserProfile = useUserStore((state) => state.setUserProfile);
     const profile = useUserStore((state) => state.profile);
+    const accessToken = useUserStore((state) => state.user.accessToken);
 
     const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
+        const { name, value } = e.target;
         setFormData((prevData) => ({
             ...prevData,
-            [name]: type === "checkbox" ? checked : value,
+            [name]: value,
         }));
     };
 
@@ -26,8 +26,8 @@ export default function ProfileForm() {
 
         //Make API request to update profile
         try {
-            const updatedProfile = await HandleUpdateProfile(profile.name, formData);
-            setUserProfile(updatedProfile);
+            const updatedProfile = await HandleUpdateProfile(profile.name, formData.avatar, accessToken);
+            setUserProfile(updatedProfile);                                                                                                         
         } catch (error) {
             console.error("Error updating profile", error);
         }
@@ -50,17 +50,7 @@ export default function ProfileForm() {
                             onChange={handleChange}
                             />
                     </div>
-                    <div className="form-input VM-checkbox">
-                        <label>
-                            Venue Manager:
-                        </label>
-                            <input
-                            type="checkbox"
-                            name="venueManager"
-                            checked={formData.venueManager}
-                            onChange={handleChange}
-                            />
-                    </div>
+                    
                     <BasicButton type="submit">Save Changes</BasicButton>
                 </form>
             </div>
