@@ -6,10 +6,18 @@ export const useUserStore = create(
         persist(
             (set) => ({
                 user: null,
-                isLoggedIn: false, // Add a flag for logged in status
+                profile: null,
+                bookings:[],
+                venues: [],
+                isLoggedIn: false, 
+                accessToken: null,
                 setUser: (user) => set({ user, isLoggedIn: true }), //Update user and set isLoggedIn to true
+                setUserProfile: (profile) => set({ profile }),
+                setBookings: (bookings) => set({ bookings }),
+                setVenues: (venues) => set({ venues }),
                 setVenueManager: (isVenueManager) => set({ isVenueManager }),
-                logout: () => set({ user: null, isLoggedIn: false, isVenueManager: false }),
+                setAccessToken: (token) => set({ accessToken: token }),
+                logout: () => set({ user: null, isLoggedIn: false, isVenueManager: false, profile: null, bookings: [], venues: [], accesstoken: null }),
             }),
             { name : "store" }
         )

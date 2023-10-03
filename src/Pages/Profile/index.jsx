@@ -1,30 +1,46 @@
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { useEffect, useState } from "react";
-import { getProfile } from "../../Api/Auth/Profile/profile";
+import { useState } from "react";
 import { useUserStore } from "../../Hooks/userStore";
 import RenderProfile from "../../Components/UI/Profile";
 import Loader from "../../Components/UI/Loader";
+import { useFetchProfile } from "../../Hooks/useFetchProfile";
+import RenderBookings from "../../Components/UI/Profile/Bookings";
+import RenderVenues from "../../Components/UI/Profile/Venues";
+import ProfileForm from "../../Components/UI/Form/UpdateProfileForm";
+import { SmallBtn } from "../../Components/UI/Buttons/styled";
+import ReactModal from "react-modal";
+import { UpdateProfileModal } from "../../Styles/ModalStyles";
+import StyledProfile from "./styledProfile";
+import StyledBookings from "./styledBookings";
+import StyledVenues from "./styledVenues";
+ReactModal.setAppElement("#root");
+
 
 export default function ProfilePage() {
-    const [profileData, setProfileData] = useState("");
-    const [isLoading, setIsLoading] = useState(true);
-    const user = useUserStore();
+    const { loading, error } = useFetchProfile();
+    const profile = useUserStore((state) => state.profile);
+    const bookings = useUserStore((state) => state.bookings);
+    const venues = useUserStore((state) => state.venues);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-    useEffect(() => {
-        if (user) {
-        //Fetch user's profile data when the component mounts
-        getProfile(user.name)
-        .then((data) => {
-            setProfileData(data);
-        })
-        .catch((error) => {
-            console.error("Error fetching profile data", error);
-        })
-        .finally(() => {
-            setIsLoading(false);
-        });
+    console.log("profile", profile);
+
+    if(error) {
+        return <div>{error}</div>;
     }
-    }, []);
+
+    if (loading || profile === null) {
+        return <Loader />;
+    }
+
+    const HandleUpdateProfileClick = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleModalClose = () => {
+        setIsModalOpen(false);
+      };
+
 
     return (
         <>
@@ -34,19 +50,44 @@ export default function ProfilePage() {
                 </Helmet>
             </HelmetProvider>
             <main>
-                <div>
-                    {isLoading ? (
-                        <Loader />
-                    ) : (
+                <StyledProfile>
+                    <div className="profile-container">
                         <RenderProfile
-                        profileData={profileData}
-                        name={profileData.name}
-                        email={profileData.email}
-                        avatar={profileData.avatar}
-                        venueManager={profileData.venueManager}
+                        profileData={profile}
+                        name={profile.name}
+                        email={profile.email}
+                        avatar={profile.avatar}
+                        venueManager={profile.venueManager}
                         />
-                    )}
-                </div>
+                        <div className="update-btn">
+                            <SmallBtn onClick={HandleUpdateProfileClick}>Update profile</SmallBtn>
+                        </div>
+                        <UpdateProfileModal isOpen={isModalOpen}>
+                            <div className="modal">
+                                <div className="modal-content">
+                                <SmallBtn className="modal-close" onClick={handleModalClose}>x</SmallBtn>
+                                <ProfileForm 
+                                onClose={handleModalClose}
+                                />
+                                </div>
+                            </div>
+                        </UpdateProfileModal>
+                    </div>
+                </StyledProfile>
+                <hr />
+                <StyledBookings>
+                    <div className="bookings-container">
+                        <h2>Your bookings ({bookings.length})</h2>
+                        <RenderBookings bookings={bookings}/>
+                    </div>
+                </StyledBookings>
+                <hr />
+                <StyledVenues>
+                    <div className="venues-container">
+                        <h2>Your venues: ({venues.length})</h2>
+                        <RenderVenues venues={venues} />
+                    </div>
+                </StyledVenues>
             </main>
         </>
     );

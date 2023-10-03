@@ -9,3 +9,4 @@ export const loginAuth = "/auth/login";
 export const profiles = "/profiles";
 export const venues = "/venues";
 export const bookings = "/bookings";
+export const profileUrl = `${baseUrl}/profiles`;
