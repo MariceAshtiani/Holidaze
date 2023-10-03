@@ -3,6 +3,7 @@ import { useUserStore } from "../../../../Hooks/userStore";
 import { HandleUpdateProfile} from "../../../../Handlers/HandleProfileUpdate";
 import StyledProfileForm from "./styled";
 import BasicButton from "../../Buttons/styled";
+import { toast } from "react-toastify";
 
 export default function ProfileForm() {
     const [formData, setFormData] = useState({
@@ -27,9 +28,13 @@ export default function ProfileForm() {
         //Make API request to update profile
         try {
             const updatedProfile = await HandleUpdateProfile(profile.name, formData.avatar, accessToken);
-            setUserProfile(updatedProfile);                                                                                                         
+            setUserProfile(updatedProfile);  
+            
+            toast.success('Avatar updated successfully');
         } catch (error) {
             console.error("Error updating profile", error);
+
+            toast.error('Failed to update avatar');
         }
     };
 
