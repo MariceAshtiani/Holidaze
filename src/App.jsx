@@ -6,6 +6,7 @@ import Login from "./Pages/Login";
 import Profile from "./Pages/Profile";
 import Listings from "./Pages/Listings";
 import VenuePage from "./Pages/Listing";
+import BookingConfirmedPage from "./Pages/BookingConfirmation";
 
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="profile" element={<Profile />} />
         <Route path="listings" element={<Listings />} />
         <Route path="listing/:id" element={<VenuePage />} />
+        <Route path="bookingconfirmation" element={<BookingConfirmedPage />} />
       </Route>
     </Routes>
   )
