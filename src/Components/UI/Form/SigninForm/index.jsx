@@ -48,10 +48,12 @@ export default function LoginForm() {
             );
             console.log(user);
             const isVenueManager = user.isVenueManager;
+            const accessToken = user.accessToken;
+        
 
 
             // Save user details in Zustand store
-            useUserStore.setState({ user, isLoggedIn: true, isVenueManager });
+            useUserStore.setState({ user, isLoggedIn: true, isVenueManager, accessToken });
 
             //redirect if login is ok
             navigate("/profile");
