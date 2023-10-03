@@ -10,6 +10,7 @@ export const useUserStore = create(
                 bookings:[],
                 venues: [],
                 isLoggedIn: false, 
+                isVenueManager: false,
                 accessToken: null,
                 setUser: (user) => set({ user, isLoggedIn: true }), //Update user and set isLoggedIn to true
                 setUserProfile: (profile) => set({ profile }),

@@ -10,6 +10,13 @@ export default styled.div`
         margin: 0 auto;
         text-align: center;
 
+        .avatar {
+            border: 2px solid orange;
+            border-radius: 50%;
+            margin-top: 20px;
+        }
+
+
         p {
             margin-bottom: 25%;
         }

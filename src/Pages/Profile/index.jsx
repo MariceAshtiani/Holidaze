@@ -7,7 +7,7 @@ import { useFetchProfile } from "../../Hooks/useFetchProfile";
 import RenderBookings from "../../Components/UI/Profile/Bookings";
 import RenderVenues from "../../Components/UI/Profile/Venues";
 import ProfileForm from "../../Components/UI/Form/UpdateProfileForm";
-import { SmallBtn } from "../../Components/UI/Buttons/styled";
+import BasicButton, { AdvancedBtn, SmallBtn } from "../../Components/UI/Buttons/styled";
 import ReactModal from "react-modal";
 import { UpdateProfileModal } from "../../Styles/ModalStyles";
 import StyledProfile from "./styledProfile";
@@ -60,7 +60,7 @@ export default function ProfilePage() {
                         venueManager={profile.venueManager}
                         />
                         <div className="update-btn">
-                            <SmallBtn onClick={HandleUpdateProfileClick}>Update profile</SmallBtn>
+                            <BasicButton onClick={HandleUpdateProfileClick}>Update profile</BasicButton>
                         </div>
                         <UpdateProfileModal isOpen={isModalOpen}>
                             <div className="modal">
@@ -82,12 +82,15 @@ export default function ProfilePage() {
                     </div>
                 </StyledBookings>
                 <hr />
+                {profile.venueManager && (
                 <StyledVenues>
                     <div className="venues-container">
                         <h2>Your venues: ({venues.length})</h2>
+                        <BasicButton>Create venue</BasicButton>
                         <RenderVenues venues={venues} />
                     </div>
                 </StyledVenues>
+                )}
             </main>
         </>
     );

@@ -7,6 +7,7 @@ export function useFetchProfile() {
     const setUserProfile = useUserStore((state) => state.setUserProfile);
     const setBookings = useUserStore((state) => state.setBookings);
     const setVenues = useUserStore((state) => state.setVenues);
+    const setVenueManager = useUserStore((state) => state.setVenueManager);
     const [error, setError] = useState(null);
     const[loading, setLoading] = useState(false);
 
@@ -35,6 +36,7 @@ export function useFetchProfile() {
 
                 // Store the profile data in the Zustand store
                 setUserProfile(data);
+                setVenueManager(data.venueManager || false);
                 setBookings(data.bookings);
                 setVenues(data.venues);
             } catch (error) {
@@ -45,7 +47,7 @@ export function useFetchProfile() {
         };
 
         fetchData();
-    }, [name, accessToken, setUserProfile, setBookings, setVenues]);
+    }, [name, accessToken, setUserProfile, setBookings, setVenues, setVenueManager]);
 
     return { loading, error};
 }
