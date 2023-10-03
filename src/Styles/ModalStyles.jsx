@@ -1,14 +1,13 @@
 export default {
     overlay: {
-        background: "rgba(22, 22, 22, 0.74)",
+        background: "rgba(22, 22, 22, 0.843)",
     },
     content: {
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
-        maxWidth: "500px",
+        maxWidth: "1500px",
         textAlign: "center",
-        height: "50vh",
         margin: "auto",
         border: "2px solid orange",
         borderRadius: "20px",
@@ -248,4 +247,41 @@ export const ErrorModal = styled(ReactModal)`
                 }
             }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
         }
+`;
+
+export const BookingModal = styled(ReactModal)`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(22, 22, 22, 0.843);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    .bookingModal-content {
+        background-color: white;
+        max-width: 1000px;
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        border: 2px solid orange;
+        border-radius: 20px;
+        margin: 20px;
+
+    }
+`;
+
+export const UpdateProfileModal = styled(ReactModal)`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(22, 22, 22, 0.843);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
 `;

@@ -1,23 +1,29 @@
 import { useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ReactModal from "react-modal";
 
 import ApiHook from "../../Hooks/apiFetch";
 import { venues } from "../../Api/constants";
 import Loader from "../../Components/UI/Loader";
-import Rating from "../../Components/UI/Venues/Rating";
-import BasicButton, {AdvancedBtn, SmallBtn} from "../../Components/UI/Buttons/styled";
-import ModalStyles, { imageModalStyle } from "../../Styles/ModalStyles";
+import {SmallBtn} from "../../Components/UI/Buttons/styled";
+import { imageModalStyle } from "../../Styles/ModalStyles";
 import StyledVenue from "./styled";
-import { FaWifi, FaCar, FaUtensils, FaPaw } from "react-icons/fa";
+import VenueInfo from "../../Components/UI/Venue";
+import BookingCalendar from "../../Components/UI/Calendar";
 ReactModal.setAppElement("#root");
+
 
 export default function VenuePage() {
     let { id } = useParams();
-    const url = `${venues}/${id}`;
+    const url = `${venues}/${id}?_bookings=true`;
     const { data, isLoading, isError } = ApiHook(url);
     const [isImageModalOpen, setIsImageModalOpen] = useState(false)
+    const defaultImage = "/src/Images/defaultimage.jpg";
+
+    const handleImageError = (event) => {
+        event.target.src = defaultImage;
+    }
 
     console.log(data);
 
@@ -48,31 +54,20 @@ export default function VenuePage() {
                 </ReactModal>
                 <div className="container">
                     <section className="mainContainer">
+
                         <div className="img-wrapper"
                         onClick={() => setIsImageModalOpen(true)}>
-                            <img src={data.media}></img>
+                            <img src={data.media} alt={data.name} onError={handleImageError}/>
+                            
                         </div>
-                        <div className="venueInfo">
-                            <h1>{data.name}</h1>
-                            {data.rating > 0 && (
-                                <div className="rating">
-                                    <Rating rating={data.rating} />
-                                </div>
-                            )}
-                            <h2>Price: {data.price}</h2>
-                            <p>{data.description}</p>
-                            <div className="meta">
-                                <p> {data.meta?.wifi ? <FaWifi /> : "Not available"}</p>
-                                <p>{data.meta?.parking ? <FaCar /> : "Not available"}</p>
-                                <p>{data.meta?.breakfast ? <FaUtensils /> : "Not included"}</p>
-                                <p>{data.meta?.pets ? <FaPaw /> : ""}</p>
-                            </div>
-                        </div>
+                        <VenueInfo data={data} />
                     </section>
+
+                    <hr/>
+
                     <section className="bookingContainer">
                         <h2>Want to book this venue?</h2>
-                        <div>Form with available dates here</div>
-                        <BasicButton>Book now</BasicButton>
+                        <BookingCalendar selectedVenueId={id} />
                     </section>
                 </div>
             </StyledVenue>

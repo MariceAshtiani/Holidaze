@@ -35,4 +35,13 @@ export default styled.div`
     p {
         margin: 10px;
     }
+
+    .rating {
+        display: flex;
+        flex-direction: row;
+
+        span {
+            line-height: 3;
+        }
+    }
 `;

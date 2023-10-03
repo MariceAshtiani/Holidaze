@@ -3,7 +3,9 @@ import styled from "styled-components";
 export default styled.main`
     .img-wrapper {
         display: flex;
+        flex-direction: column;
         justify-content: center;
+        gap: 20px;
         align-items: center;
         max-height: 60vh;
         object-fit: cover;
@@ -12,48 +14,21 @@ export default styled.main`
     }
 
     img {
-        max-width: 100%;
+        max-width: 700px;
+        width: 100%;
+        max-height: 700px;
         height: 100%;
     }
 
-    h1 {
-        margin-bottom: 20px;
-        margin-top: 0px;
-    }
-
-    .tags, .rating {
-        display: flex;
-        gap: 1rem;
-
-        p {
-            margin: 0;
-        }
-    }
-
-    .star {
-        color: orange;
-    }
-
-    .rating {
-        margin: 0;
-    }
-
-    .venueInfo p{
-        margin-bottom: 2rem;
-    }
-
-    .meta {
-        display: flex;
-        flex-direction: row;
-        gap: 20px;
-    }
-
     .bookingContainer {
+        padding: 20px;
         text-align: center;
 
+        h2 {
+            margin-bottom: 40px;
+        }
         button {
-            margin-top: 10%;
+            margin-top: 5%;
         }
     }
-
 `;

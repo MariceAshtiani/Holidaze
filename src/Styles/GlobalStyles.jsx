@@ -54,20 +54,6 @@ const GlobalStyle = createGlobalStyle`
         content: none;
     }
 
-
-
-    .successContainer {
-        text-align: center;
-        max-width: 700px;
-        border: 2px solid orange;
-        border-radius: 20px;
-        min-height: 50vh;
-    }
-
-    .successContainer button, h2, p {
-        margin-top: 2rem;
-    }
-
     .registerMain {
         background-image: URL("/Images/background-image.jpg");
         height: 120vh;

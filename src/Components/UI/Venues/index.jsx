@@ -16,7 +16,7 @@ export default function VenueList(props) {
                 if (venue.media.length > 0) {
                     const isValid = await isValidImageURL(venue.media[0]);
                     if (isValid) {
-                        imageUrl = venue.media;
+                        imageUrl = venue.media[0];
                     }
                 }
                 
@@ -47,6 +47,7 @@ export default function VenueList(props) {
                 price={venue.price}
                 img={venue.imageUrl}
                 meta={venue.meta}
+                rating={venue.rating} 
                 />
             ))
             
