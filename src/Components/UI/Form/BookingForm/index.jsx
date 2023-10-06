@@ -16,7 +16,7 @@ const schema = Yup.object({
     .test('is-after', 'End date must be after start date', function (value, { parent }) {
         return compareAsc(parent.dateFrom, value) === -1;
     }),
-    guests: Yup.number().integer().min(1, 'Minimum 1 guest')
+    guests: Yup.number().typeError("Number of guests must be a valid number").integer().min(1, 'Minimum 1 guest')
     .required('Number of guests is required'),
     venueId: Yup.string().required('Venue ID is required'),
 })

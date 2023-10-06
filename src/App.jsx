@@ -9,6 +9,7 @@ import Profile from "./Pages/Profile";
 import Listings from "./Pages/Listings";
 import VenuePage from "./Pages/Listing";
 import BookingConfirmedPage from "./Pages/BookingConfirmation";
+import CreateVenuePage from "./Pages/CreateVenue";
 
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="listings" element={<Listings />} />
           <Route path="listing/:id" element={<VenuePage />} />
           <Route path="bookingconfirmation" element={<BookingConfirmedPage />} />
+          <Route path="createvenue" element={<CreateVenuePage />} />
         </Route>
       </Routes>
     <ToastContainer position="top-center" />
