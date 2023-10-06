@@ -16,11 +16,11 @@ export default styled.div`
 
     a {
             font-weight: bold;
-            color: darkorange;
+            color: black;
         }
 
     .nav-link:hover {
-        color: white;
+        color: darkorange;
     }
 
     .active {
@@ -57,8 +57,9 @@ export default styled.div`
         background-color: #F8CF99;
         font-size: 1.5rem;
         font-weight: bold;
-        color: darkorange;
+        color: black;
         cursor: pointer;
+        padding: 0;
     }
 
     .logoutButton:hover {
