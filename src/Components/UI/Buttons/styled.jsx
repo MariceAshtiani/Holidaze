@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 const BasicButton = styled.button`
-    background-color: darkorange;
+    background-color: orange;
     border-radius: 10px;
     border: 2px solid darkorange;
-    box-shadow: 0 0 50px black;
+    box-shadow: 0 0 20px black;
     color: black;
     font-weight: bold;
     font-size: 1.2rem;
-    padding: 15px 50px;
+    padding: 10px 25px;
     margin-right: 1rem;
     margin-bottom: 1rem;
     cursor: pointer;
@@ -33,5 +33,23 @@ export const SmallBtn = styled(AdvancedBtn)`
     margin-bottom: 10px;
 
 `;
+
+export const FormBtn = styled(SmallBtn)`
+    background-color: orange;
+    border-radius: 10px;
+    border: 2px solid darkorange;
+    box-shadow: 0 0 10px black;
+    color: black;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+    &:hover {
+        transform: scale(0.95);
+        opacity: 0.7;
+    }
+`;
+
 
 export default BasicButton;
