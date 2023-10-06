@@ -1,33 +1,34 @@
-import { useState } from "react";
+
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { useUserStore } from "../../../../Hooks/userStore";
 import { HandleUpdateProfile} from "../../../../Handlers/HandleProfileUpdate";
 import StyledProfileForm from "./styled";
 import BasicButton from "../../Buttons/styled";
 import { toast } from "react-toastify";
 
+// Validation schema using Yup
+
+const schema = yup.object({
+    avatar: yup.string()
+        .required("Please enter a valid url")
+});
+
 export default function ProfileForm() {
-    const [formData, setFormData] = useState({
-        avatar: "",
-    });
 
     const setUserProfile = useUserStore((state) => state.setUserProfile);
-    const profile = useUserStore((state) => state.profile);
-    const accessToken = useUserStore((state) => state.user.accessToken);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        resolver: yupResolver(schema)
+    });
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const onSubmit = async (data) => {
 
         //Make API request to update profile
         try {
-            const updatedProfile = await HandleUpdateProfile(profile.name, formData.avatar, accessToken);
+            const avatar = data
+            const updatedProfile = await HandleUpdateProfile(avatar);
             setUserProfile(updatedProfile);  
             
             toast.success('Avatar updated successfully');
@@ -42,18 +43,13 @@ export default function ProfileForm() {
         <StyledProfileForm>
             <div className="profile-form">
                 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <h2>Edit profile</h2>
+
                     <div className="form-input">
-                        <label>
-                            Avatar URL:
-                        </label>
-                            <input
-                            type="text"
-                            name="avatar"
-                            value={formData.avatar}
-                            onChange={handleChange}
-                            />
+                        <label>Avatar URL: </label>
+                            <input { ...register("avatar")} />
+                            <p className="formError">{errors.avatar?.message}</p>
                     </div>
                     
                     <BasicButton type="submit">Save Changes</BasicButton>

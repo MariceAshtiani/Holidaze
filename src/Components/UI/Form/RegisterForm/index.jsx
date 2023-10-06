@@ -49,7 +49,7 @@ export default function RegistrationForm() {
     const onSubmit = async (data) => {
         //Send to the API
         try {
-            const { name, email, password, avatar, venueManager } = data
+            const { name, email, password, avatar, venueManager } = data;
             const response = await userRegistration(name, email, password, avatar, venueManager);
 
             console.log(response);
