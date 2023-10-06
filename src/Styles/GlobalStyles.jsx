@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        font-family: "helvetica";
+        font-family: "segoe UI";
         margin: 0;
     }
 

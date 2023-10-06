@@ -5,6 +5,8 @@ import Rating from "../Venues/Rating";
 
 export default function VenueCard(props) {
     const hasRatings = props.rating > 0;
+    const { wifi, parking, breakfast, pets } = props.meta || {};
+    const hasAmenities = wifi || parking || breakfast || pets;
 
 
     return (
@@ -15,10 +17,16 @@ export default function VenueCard(props) {
                     <h3>{props.title}</h3>
                     <p>{props.price},-</p>
                     <div className="meta">
-                        <p>{props.meta?.wifi ? <FaWifi /> : "" }</p>
-                        <p>{props.meta?.parking ? <FaCar /> : ""}</p>
-                        <p>{props.meta?.breakfast ? <FaUtensils /> : ""}</p>
-                        <p>{props.meta?.pets ? <FaPaw /> : ""}</p>
+                        {hasAmenities ? (
+                            <>
+                                {wifi && <p><FaWifi /></p>}
+                                {parking && <p><FaCar /></p>}
+                                {breakfast && <p><FaUtensils /></p>}
+                                {pets && <p><FaPaw /></p>}
+                            </>
+                        ) : (
+                            <p>No venue amenities</p>
+                        )}
                     </div>
                     <div className="rating">
                         <Rating rating={props.rating} hasRatings={hasRatings} />
