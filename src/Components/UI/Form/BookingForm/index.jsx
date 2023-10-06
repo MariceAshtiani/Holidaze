@@ -1,177 +1,136 @@
-
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import StyledBookingForm from "./styled";
 import BasicButton, {SmallBtn} from "../../Buttons/styled";
 import ReactDatePicker from "react-datepicker";
 import { toast } from "react-toastify";
-import { useFormik } from "formik";
 import { compareAsc } from "date-fns";
+import { HandleBookingForm } from "../../../../Handlers/BookingFormSubmit";
 
 const schema = Yup.object({
-    name: Yup.string()
-    .required('Name is required'),
-    email: Yup.string()
-    .email('Invalid email address')
-    .required('Email is required'),
-    dateFrom: Yup.date()
-    .required('Start date is required'),
-    dateTo: Yup.date()
-    .required('End date is required')
+    name: Yup.string().required('Name is required'),
+    email: Yup.string().required('Email is required'),
+    dateFrom: Yup.date().required('Start date is required'),
+    dateTo: Yup.date().required('End date is required')
     .test('is-after', 'End date must be after start date', function (value, { parent }) {
         return compareAsc(parent.dateFrom, value) === -1;
     }),
-    guests: Yup.number()
-    .integer().min(1, 'Minimum 1 guest')
+    guests: Yup.number().integer().min(1, 'Minimum 1 guest')
     .required('Number of guests is required'),
-    venueId: Yup.string()
-    .required('Venue ID is required'),
+    venueId: Yup.string().required('Venue ID is required'),
 })
 
 
-export default function BookingForm({ venueId, availableDates, onSubmit, onClose }) {
-const initialValues = {
-        name: "",
-        email: "",
-        dateFrom: "",
-        dateTo: "",
-        guests: "",
-        venueId: venueId,
+export default function BookingForm({ venueId, availableDates, onClose, user }) {
+
+
+    const { register, control, handleSubmit, formState: { errors } } = useForm({
+        resolver: yupResolver(schema),
+        defaultValues: {
+            name: user ? user.name : "",
+            email: user ? user.email : "",
+        },
+    });
+
+    function isDateEqual(date1, date2) {
+        return (
+        date1.getDate() === date2.getDate() &&
+        date1.getMonth() === date2.getMonth() &&
+        date1.getFullYear() === date2.getFullYear()
+        );
     };
 
-    const validate = (values) => {
-        const errors = {};
-        if (!values.dateFrom) {
-            errors.dateFrom = 'Start date is required';
-        }
+    
 
-        if (!values.dateTo) {
-            errors.dateTo = 'End date is required';
-        }
-
-        return errors;
-    };
-
-    const formik = useFormik({
-    initialValues,
-    validationSchema: schema,
-    validate,
-    onSubmit: async (values) => {
+    const onSubmit = async (data) => {
+        // send request to the API
         try {
-            await onSubmit(values);
-            onClose();
-        } catch (error) {
-            toast(`An error occurred: ${error}`, {
-                poition: "center",
-                type: "error",
-            });
-        }
-    },
-});
+            const { name, email, dateFrom, dateTo, guests } = data;
+            const response = await HandleBookingForm(name, email, dateFrom, dateTo, guests);
 
-function isDateEqual(date1, date2) {
-    return (
-      date1.getDate() === date2.getDate() &&
-      date1.getMonth() === date2.getMonth() &&
-      date1.getFullYear() === date2.getFullYear()
-    );
-  }
+            console.log(response);
+
+            toast.success("Booking creates successfully!");
+        } catch (error) {
+            console.error("Error creating booking", error);
+
+            toast.error("Failed to create booking");
+        }
+    };
 
 return (
     <div>
         
-        <StyledBookingForm onSubmit={formik.handleSubmit}>
+        <StyledBookingForm onSubmit={handleSubmit(onSubmit)}>
             <h1>Create your booking</h1> 
             <div className="booking-form">
 
                 <div className="input-group">
                     <div>
-                        <label>Name:</label>
-                        <input
-                        type="text"
-                        name="name"
-                        placeholder="Name"
-                        value={formik.values.name}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        />
-                        {formik.touched.name && formik.errors.name ? (
-                            <div className="error">{formik.errors.name}</div>
-                        ): null}
+                        <label>Name</label>
+                        <input {...register("name")} />
+                        <p className="error">{errors.name?.message}</p>
                     </div>
 
                     <div>
                         <label>Email</label>
-                        <input
-                        type="email"
-                        name="email"
-                        placeholder="Email"
-                        value={formik.values.email}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        />
-                        {formik.touched.email && formik.errors.email ? (
-                            <div className="error">{formik.errors.email}</div>
-                        ) : null}
+                        <input {...register("email")} />
+                        <p className="error">{errors.email?.message}</p>
                     </div>
-
-                    
 
                     <div>
-                        <label>How many guests?</label>
-                        <input
-                        type="number"
-                        name="guests"
-                        placeholder="Number of guests"
-                        value={formik.values.guests}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        />
-                        {formik.touched.guests && formik.errors.guests ? (
-                            <div className="error">{formik.errors.guests}</div>
-                        ) : null}
+                        <label>Number of guests</label>
+                        <input {...register("guests")} />
+                        <p className="error">{errors.guests?.message}</p>
                     </div>
-
                 </div>
 
                 <div className="date-input">
                 <label>From date:</label>
-                <ReactDatePicker
+                <Controller
                     name="dateFrom"
-                    selected={formik.values.dateFrom}
-                    onChange={(date) => formik.setFieldValue("dateFrom", date)}
-                    minDate={new Date()}
-                    filterDate={(date) =>
-                    availableDates.some((availableDate) =>
-                        isDateEqual(date, availableDate)
-                    )
-                    }
+                    control={control}
+                    render={({ field: { onChange, value } }) => (
+                        <ReactDatePicker
+                            selected={value}
+                            onChange={onChange}
+                            minDate={new Date()}
+                            filterDate={(date) =>
+                                availableDates.some((availableDate) =>
+                                    isDateEqual(date, availableDate)
+                                )
+                            }
+                        />
+                    )}
                 />
-                {formik.touched.dateFrom && formik.errors.dateFrom ? (
-                    <div className="error">{formik.errors.dateFrom}</div>
-                ) : null}
+                <p className="error">{errors.dateFrom?.message}</p>
                 </div>
 
                 <div className="date-input">
-                <label>To date:</label>
-                <ReactDatePicker
-                    name="dateTo"
-                    selected={formik.values.dateTo}
-                    onChange={(date) => formik.setFieldValue("dateTo", date)}
-                    minDate={new Date()}
-                    filterDate={(date) =>
-                    availableDates.some((availableDate) =>
-                        isDateEqual(date, availableDate)
-                    )
-                    }
-                />
-                {formik.touched.dateTo && formik.errors.dateTo ? (
-                    <div className="error">{formik.errors.dateTo}</div>
-                ) : null}
+                    <label>To date:</label>
+                    <Controller
+                        name="dateTo"
+                        control={control} 
+                        render={({ field: { onChange, value } }) => (
+                            <ReactDatePicker
+                                selected={value}
+                                onChange={onChange}
+                                minDate={new Date()}
+                                filterDate={(date) =>
+                                    availableDates.some((availableDate) =>
+                                        isDateEqual(date, availableDate)
+                                    )
+                                }
+                            />
+                        )}
+                    />
+                    <p className="error">{errors.dateTo?.message}</p>
                 </div>
 
                 <div className="venue-input">
                     <label>Venue:</label>
-                    <input type="text" name="venueId" value={venueId} readOnly />
+                    <input type="text" name="venueId" {...register("venueId")} value={venueId} readOnly />
                 </div>
 
                 <div className="BookingBtnGroup">

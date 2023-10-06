@@ -16,6 +16,7 @@ export default function BookingCalendar({ selectedVenueId }) {
     const [bookings, setBookings] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const { data } = ApiHook(`/venues/${selectedVenueId}?_bookings=true`, "GET");
+    const user = useUserStore((state) => state.user);
 
     useEffect(() => {
         if (data) {
@@ -108,6 +109,7 @@ export default function BookingCalendar({ selectedVenueId }) {
                     availableDates={availableDates}
                     onSubmit={handleSubmitBooking}
                     onClose={handleModalClose}
+                    user={user}
                     />
                     </div>
                 </BookingModal>
