@@ -10,6 +10,7 @@ import Listings from "./Pages/Listings";
 import VenuePage from "./Pages/Listing";
 import BookingConfirmedPage from "./Pages/BookingConfirmation";
 import CreateVenuePage from "./Pages/CreateVenue";
+import UpdateVenuePage from "./Pages/EditVenue";
 
 
 export default function App() {
@@ -26,9 +27,10 @@ export default function App() {
           <Route path="listing/:id" element={<VenuePage />} />
           <Route path="bookingconfirmation" element={<BookingConfirmedPage />} />
           <Route path="createvenue" element={<CreateVenuePage />} />
+          <Route path="editvenue/:id" element={<UpdateVenuePage />} />
         </Route>
       </Routes>
-    <ToastContainer position="top-center" />
+    <ToastContainer position="top-center"  autoClose={3000}/>
     </div>
   )
 }
