@@ -1,3 +1,4 @@
+
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
@@ -7,6 +8,9 @@ import ReactDatePicker from "react-datepicker";
 import { toast } from "react-toastify";
 import { compareAsc } from "date-fns";
 import { HandleBookingForm } from "../../../../Handlers/BookingFormSubmit";
+import { useUserStore } from "../../../../Hooks/userStore";
+import { useNavigate } from "react-router-dom";
+import { formatDate } from "../../../../Utils/DateFormatter";
 
 const schema = Yup.object({
     name: Yup.string().required('Name is required'),
@@ -22,9 +26,8 @@ const schema = Yup.object({
 })
 
 
-export default function BookingForm({ venueId, availableDates, onClose, user }) {
-
-
+export default function BookingForm({ venueId, availableDates, onClose, user, onBookingSuccess }) {
+    const accessToken = useUserStore((state) => state.accessToken);
     const { register, control, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema),
         defaultValues: {
@@ -32,6 +35,8 @@ export default function BookingForm({ venueId, availableDates, onClose, user }) 
             email: user ? user.email : "",
         },
     });
+
+    const navigate = useNavigate();
 
     function isDateEqual(date1, date2) {
         return (
@@ -42,19 +47,23 @@ export default function BookingForm({ venueId, availableDates, onClose, user }) 
     };
 
     
+    
 
     const onSubmit = async (data) => {
         // send request to the API
         try {
-            const { name, email, dateFrom, dateTo, guests } = data;
-            const response = await HandleBookingForm(name, email, dateFrom, dateTo, guests);
+            const response = await HandleBookingForm(data, accessToken);
 
             console.log(response);
 
-            toast.success("Booking creates successfully!");
+            toast.success("Booking created successfully!")
+            setTimeout(() => {
+                navigate("/bookingconfirmation");
+            }, 3000);
+
+            
         } catch (error) {
             console.error("Error creating booking", error);
-
             toast.error("Failed to create booking");
         }
     };
@@ -96,11 +105,7 @@ return (
                             selected={value}
                             onChange={onChange}
                             minDate={new Date()}
-                            filterDate={(date) =>
-                                availableDates.some((availableDate) =>
-                                    isDateEqual(date, availableDate)
-                                )
-                            }
+                            filterDate={(date) => availableDates.includes(formatDate(date))}
                         />
                     )}
                 />
@@ -117,11 +122,7 @@ return (
                                 selected={value}
                                 onChange={onChange}
                                 minDate={new Date()}
-                                filterDate={(date) =>
-                                    availableDates.some((availableDate) =>
-                                        isDateEqual(date, availableDate)
-                                    )
-                                }
+                                filterDate={(date) => availableDates.includes(formatDate(date))}
                             />
                         )}
                     />
@@ -135,7 +136,7 @@ return (
 
                 <div className="BookingBtnGroup">
                     <BasicButton type="submit">Book now</BasicButton>
-                    <SmallBtn onClick={onClose}>Cancel</SmallBtn>
+                    <SmallBtn onClick={onClose} className="cancel-btn">Cancel</SmallBtn>
                 </div>
                 
             </div>

@@ -4,6 +4,7 @@ export default styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 20px;
     max-width: 700px;
     width: 100%;
     height: auto;
@@ -29,11 +30,11 @@ export default styled.form`
     }
 
     .input-group {
-        flex-direction: column;
         margin-bottom: 20px;
     }
 
-    .input-group div {
+    .input-group div, .date-input > label{
+        display: block;
         margin-bottom: 10px;
     }
 
@@ -45,18 +46,13 @@ export default styled.form`
         text-indent: 15px;
     }
 
-    .date-input {
-        display: flex;
-        flex-direction: column;
+    .date-input input{
+        width: 100%;
     }
 
     .venue-input input{
         cursor: not-allowed;
         background-color: darkgray;
-    }
-
-    .react-datepicker-wrapper input {
-        margin-bottom: 10px;
     }
 
     .BookingBtnGroup {
@@ -68,11 +64,15 @@ export default styled.form`
 
     button {
         margin: 0 auto;
+    }
+
+    .cancel-btn {
         margin-top: 20px;
     }
 
     .error{
         color: red;
+        margin-top: 5px;
     }
 
     @media (max-width: ${({ theme }) => theme.tablet}) {
