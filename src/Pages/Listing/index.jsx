@@ -2,28 +2,40 @@ import { useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 import ReactModal from "react-modal";
+import { Link } from "react-router-dom";
 
 import ApiHook from "../../Hooks/apiFetch";
-import { venues } from "../../Api/constants";
+import { listings } from "../../Api/constants";
 import Loader from "../../Components/UI/Loader";
-import {SmallBtn} from "../../Components/UI/Buttons/styled";
+import {SmallBtn, EditBtn} from "../../Components/UI/Buttons/styled";
 import { imageModalStyle } from "../../Styles/ModalStyles";
 import StyledVenue from "./styled";
 import VenueInfo from "../../Components/UI/Venue";
 import BookingCalendar from "../../Components/UI/Calendar";
+import { useUserStore } from "../../Hooks/userStore";
+import FetchVenueBookings from "../../Components/UI/Venue/VenueBookings";
 ReactModal.setAppElement("#root");
 
 
 export default function VenuePage() {
     let { id } = useParams();
-    const url = `${venues}/${id}?_bookings=true`;
+    const url = `${listings}/${id}?_bookings=true`;
     const { data, isLoading, isError } = ApiHook(url);
     const [isImageModalOpen, setIsImageModalOpen] = useState(false)
+    const [isModalOpen, setIsModalOpen] = useState(true);
     const defaultImage = "/src/Images/defaultimage.jpg";
+    const { user, isVenueManager, venues } = useUserStore(state => ({
+        user: state.user,
+        isVenueManager: state.isVenueManager,
+        venues: state.venues
+    }));
 
+    console.log(venues);
     const handleImageError = (event) => {
         event.target.src = defaultImage;
     }
+
+    const isUserOwner = isVenueManager && venues?.some(venue => venue.id === id);
 
     console.log(data);
 
@@ -36,6 +48,10 @@ export default function VenuePage() {
 
     const handleCloseModal = () => {
         setIsImageModalOpen(false);
+    }
+
+    const closeModal = () => {
+        setIsModalOpen(false);
     }
 
     return (
@@ -61,13 +77,34 @@ export default function VenuePage() {
                             
                         </div>
                         <VenueInfo data={data} />
+                        
                     </section>
+
+                    <div className="edit-btn">
+                        {isUserOwner &&
+                            <Link to={`/editvenue/${id}`}>
+                                <EditBtn>Edit venue</EditBtn>
+                            </Link>
+                        }
+                    </div>
 
                     <hr/>
 
                     <section className="bookingContainer">
-                        <h2>Want to book this venue?</h2>
-                        <BookingCalendar selectedVenueId={id} />
+                    {isUserOwner 
+                        ? 
+                        <div className="venueBookings">
+                            <h2>Bookings for this venue:</h2>
+                            <FetchVenueBookings bookings={data?.bookings || []} />
+                        </div>
+                        : (
+                            <>
+                                <h2>Want to book this venue?</h2>
+                                <BookingCalendar selectedVenueId={id} isOpen={isModalOpen} closeModal={closeModal} />
+                            </>
+                        )
+                    }
+                        
                     </section>
                 </div>
             </StyledVenue>

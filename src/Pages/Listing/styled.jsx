@@ -20,15 +20,32 @@ export default styled.main`
         height: 100%;
     }
 
+    .edit-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
     .bookingContainer {
         padding: 20px;
-        text-align: center;
 
         h2 {
             margin-bottom: 40px;
+            text-align: center;
         }
         button {
             margin-top: 5%;
+        }
+    }
+
+    @media (max-width: ${({ theme }) => theme.mobile }) {
+        .venueBookings {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
         }
     }
 `;

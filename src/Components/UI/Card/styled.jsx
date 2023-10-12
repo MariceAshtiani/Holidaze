@@ -36,6 +36,12 @@ export default styled.div`
         margin: 10px;
     }
 
+    .card-bottom {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
     .rating {
         display: flex;
         flex-direction: row;
@@ -44,4 +50,9 @@ export default styled.div`
             line-height: 3;
         }
     }
+
+    .edit-btn  {
+        margin: 0;
+    }
+
 `;

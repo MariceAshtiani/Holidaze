@@ -2,20 +2,22 @@ import StyledCard from "./styled";
 import { Link } from "react-router-dom";
 import { FaWifi, FaCar, FaUtensils, FaPaw, FaStar } from "react-icons/fa";
 import Rating from "../Venues/Rating";
+import { EditBtn } from "../Buttons/styled";
 
-export default function VenueCard(props) {
-    const hasRatings = props.rating > 0;
-    const { wifi, parking, breakfast, pets } = props.meta || {};
+export default function VenueCard({ id, title, price, img, meta, rating, ownerEmail, currentUserEmail }) {
+    const hasRatings = rating > 0;
+    const { wifi, parking, breakfast, pets } = meta || {};
     const hasAmenities = wifi || parking || breakfast || pets;
+    const isUserVenue = ownerEmail === currentUserEmail;
 
 
     return (
-        <Link to={`/listing/${props.id}`}>
+        <Link to={`/listing/${id}`}>
             <StyledCard>
-                <img src={props.img} alt={props.title} />
+                <img src={img} alt={title} />
                 <div className="venueCardText">
-                    <h3>{props.title}</h3>
-                    <p>{props.price},-</p>
+                    <h3>{title}</h3>
+                    <p>{price},-</p>
                     <div className="meta">
                         {hasAmenities ? (
                             <>
@@ -28,11 +30,18 @@ export default function VenueCard(props) {
                             <p>No venue amenities</p>
                         )}
                     </div>
-                    <div className="rating">
-                        <Rating rating={props.rating} hasRatings={hasRatings} />
-                        <span className="rating-count">
-                            {hasRatings ? `(${props.rating})` : "(0)"}
-                        </span>
+                    <div className="card-bottom">
+                        <div className="rating">
+                            <Rating rating={rating} hasRatings={hasRatings} />
+                            <span className="rating-count">
+                                {hasRatings ? `(${rating})` : "(0)"}
+                            </span>
+                        </div>
+                        {isUserVenue && (
+                            <Link to={`/editvenue/${id}`}>
+                                <EditBtn className="edit-btn">Edit</EditBtn>
+                            </Link>
+                        )}
                     </div>
                 </div>
             </StyledCard>

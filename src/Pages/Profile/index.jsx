@@ -13,6 +13,7 @@ import { UpdateProfileModal } from "../../Styles/ModalStyles";
 import StyledProfile from "./styledProfile";
 import StyledBookings from "./styledBookings";
 import StyledVenues from "./styledVenues";
+import { Link } from "react-router-dom";
 ReactModal.setAppElement("#root");
 
 
@@ -23,7 +24,7 @@ export default function ProfilePage() {
     const venues = useUserStore((state) => state.venues);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    console.log("profile", profile);
+    console.log(profile);
 
     if(error) {
         return <div>{error}</div>;
@@ -78,7 +79,7 @@ export default function ProfilePage() {
                 <StyledBookings>
                     <div className="bookings-container">
                         <h2>Your bookings ({bookings.length})</h2>
-                        <RenderBookings bookings={bookings}/>
+                            <RenderBookings bookings={bookings}/>
                     </div>
                 </StyledBookings>
                 <hr />
@@ -86,8 +87,10 @@ export default function ProfilePage() {
                 <StyledVenues>
                     <div className="venues-container">
                         <h2>Your venues: ({venues.length})</h2>
-                        <BasicButton>Create venue</BasicButton>
-                        <RenderVenues venues={venues} />
+                        <Link to="/createvenue">
+                            <AdvancedBtn>Create venue</AdvancedBtn>
+                        </Link>
+                        <RenderVenues venues={venues}/>
                     </div>
                 </StyledVenues>
                 )}
