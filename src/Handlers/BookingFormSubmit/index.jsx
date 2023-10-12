@@ -1,36 +1,48 @@
-import { toast } from "react-toastify";
 import { baseUrl, bookings } from "../../Api/constants";
-import { useUserStore } from "../../Hooks/userStore";
+
 
 const url = baseUrl + bookings;
-const method = "POST"
 
-export async function HandleBookingForm(formData, resetForm) {
-    const { accessToken } = useUserStore();
+export async function HandleBookingForm(data, accessToken) {
+
+    if (!(data.dateFrom instanceof Date)) {
+        throw new Error("dateFrom is not a date object");
+    }
+
+    if (!(data.dateTo instanceof Date)) {
+        throw new Error("dateTo is not a date object");
+    }
+
+    const dateFromString = data.dateFrom.toISOString();
+    const dateToString = data.dateTo.toISOString();
+    
+    const payload = {
+        dateFrom: dateFromString,
+        dateTo: dateToString,
+        guests: data.guests,
+        venueId: data.venueId
+    };
 
     try {
         const response = await fetch(url, {
-            method,
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${accessToken}`,
             },
-            body: JSON.stringify(formData)
-        })
+            body: JSON.stringify(payload)
+        });
         
         if (!response.ok) {
-            throw new Error(`Something went wrong: ${response.status}`)
+            const errorData = await response.json();
+            throw new Error(`Error creating booking: ${JSON.stringify(errorData)}`)
         } 
 
-        resetForm();
-        toast("Venue booked", {
-            position: "center",
-            type: "success",
-        }); 
+        const responseData = await response.json();
+        return responseData;
+
     } catch (error) {
-        toast(`An error occured: ${error}`, {
-            position: center,
-            type: "error",
-        });
+        console.error("Error creating booking:", error.message);
+        throw error;
     }
 };
