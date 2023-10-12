@@ -5,16 +5,18 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import StyledForm from "./styled";
 import BasicButton, { FormBtn } from "../../Buttons/styled";
+import { useUserStore } from "../../../../Hooks/userStore";
+import { HandleCreateVenueForm } from "../../../../Handlers/HandleCreateVenue";
 
 
 
 const schema = Yup.object({
     name: Yup.string().required("Name for the venue is required"),
     description: Yup.string().required("Description is required"),
-    media: Yup.array().of(Yup.string().url("Must be a valir URL")),
+    media: Yup.array().of(Yup.string().url("Must be a valid URL")),
     price: Yup.number().typeError("Price must be a valid number").required("Price is required"),
     maxGuests: Yup.number().typeError("Max guests must be a valid number").required('Max guests is required'),
-    rating: Yup.number().typeError("Rating must be a valid number").min(0, "Rating must be >= 0").max(5, "Rating must be <= 5"),
+    rating: Yup.number().transform(value => (isNaN(value) ? undefined : value)).notRequired().min(0).max(5),
     meta: Yup.object({
         wifi: Yup.boolean(),
         parking: Yup.boolean(),
@@ -27,16 +29,27 @@ const schema = Yup.object({
         zip: Yup.string(),
         country: Yup.string(),
         continent: Yup.string(),
-        lat: Yup.number(),
-        lng: Yup.number()
+        lat: Yup.number().nullable().transform((value, originalValue) =>
+        String(originalValue).trim() === "" ? null : value)
+        .min(-90, "Latitude must be >= -90").max(90, "Latitude must be <= 90"),
+        lng: Yup.number().nullable().transform((value, originalValue) =>
+        String(originalValue).trim() === "" ? null : value)
+        .min(-180, "Longitude must be >= -180").max(180, "Longitude must be <= 180"),
     }),
 });
 
 
 export default function CreateVenueForm() {
-
+    const accessToken = useUserStore((state) => state.accessToken);
     const navigate = useNavigate();
     const { register, handleSubmit, control, setError, reset, formState: { errors } } = useForm({
+        defaultValues: {
+            rating: 0,
+            location: {
+                lat: 0,
+                lng: 0
+            }
+        },
         resolver: yupResolver(schema)
     });
 
@@ -48,13 +61,28 @@ export default function CreateVenueForm() {
 
 
     const onSubmit = async (data) => {
+        console.log(data);
+        if (data.rating === "") {
+            data.rating = 0;
+        }
+        
+        if (!data.location.lat) {
+            data.location.lat = 0;
+        }
+
+        if (!data.location.lng) {
+            data.location.lng = 0;
+        }
+        
         try {
             //Send request to API here
-            const response = { ok: true, id: "123"};
+            const response = await HandleCreateVenueForm(data, accessToken);
 
-            if (response.ok) {
+            if (response && response.id) {
                 toast.success("Venue created successfully!");
-                navigate(`/venues/${response.id}`);
+                setTimeout(() => {
+                    navigate(`/listing/${response.id}`);
+                }, 3000)
             } else {
                 toast.error("Error creating venue");
             }
@@ -103,46 +131,53 @@ export default function CreateVenueForm() {
             <div className="metaInputs">
                 <div className="meta-input">
                     <label>Wifi</label>
-                    <input {...register("meta.wifi")} type="checkbox" className="meta-check" />
+                    <input {...register("meta.wifi")} type="checkbox" className="meta-check" value={true} />
                 </div>
 
                 <div className="meta-input">
                     <label>Parking</label>
-                    <input {...register("meta.parking")} type="checkbox" className="meta-check" /> 
+                    <input {...register("meta.parking")} type="checkbox" className="meta-check" value={true}/> 
                 </div>
 
                 <div className="meta-input">
                     <label>Breakfast</label>
-                    <input {...register("meta.breakfast")} type="checkbox" className="meta-check" />
+                    <input {...register("meta.breakfast")} type="checkbox" className="meta-check" value={true} />
                 </div>
             
                 <div className="meta-input">
                     <label>Pets Allowed</label>
-                    <input {...register("meta.pets")} type="checkbox"  className="meta-check" />
+                    <input {...register("meta.pets")} type="checkbox"  className="meta-check" value={true} />
                 </div>
             </div>
 
             {/* Location Fields */}
             <label>Address</label>
             <input {...register("location.address")} placeholder="Address" />
+            <p className="error">{errors.location?.address?.message}</p>
 
             <label>City</label>
             <input {...register("location.city")} placeholder="City" />
+            <p className="error">{errors.location?.city?.message}</p>
 
             <label>Zip code</label>
             <input {...register("location.zip")} placeholder="Zip Code" />
+            <p className="error">{errors.location?.zip?.message}</p>
 
             <label>Country</label>
             <input {...register("location.country")} placeholder="Country" />
+            <p className="error">{errors.location?.country?.message}</p>
 
             <label>Continent</label>
             <input {...register("location.continent")} placeholder="Continent" />
+            <p className="error">{errors.location?.continent?.message}</p>
 
             <label>Latitude</label>
             <input {...register("location.lat")} type="number" placeholder="Latitude" />
+            <p className="error">{errors.location?.lat?.message}</p>
 
             <label>Longitude</label>
             <input {...register("location.lng")} type="number" placeholder="Longitude" />
+            <p className="error">{errors.location?.lng?.message}</p>
 
             <BasicButton type="submit" className="create-btn">Create Venue</BasicButton>
         </StyledForm>
