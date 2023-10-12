@@ -1,4 +1,3 @@
-
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -15,9 +14,9 @@ const schema = yup.object({
         .required("Please enter a valid url")
 });
 
-export default function ProfileForm() {
-
+export default function ProfileForm({ onClose }) {
     const setUserProfile = useUserStore((state) => state.setUserProfile);
+    const { name, accessToken } = useUserStore((state) => state.user || {});
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema)
@@ -28,10 +27,13 @@ export default function ProfileForm() {
         //Make API request to update profile
         try {
             const avatar = data
-            const updatedProfile = await HandleUpdateProfile(avatar);
+            const updatedProfile = await HandleUpdateProfile(name, data, accessToken);
             setUserProfile(updatedProfile);  
+            console.log("Profile name:", name);
             
-            toast.success('Avatar updated successfully');
+            toast.success('Avatar updated successfully', {
+                onClose: () => onClose()
+            });
         } catch (error) {
             console.error("Error updating profile", error);
 
