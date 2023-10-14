@@ -9,8 +9,6 @@ const BasicButton = styled.button`
     font-weight: bold;
     font-size: 1.2rem;
     padding: 10px 25px;
-    margin-right: 1rem;
-    margin-bottom: 1rem;
     cursor: pointer;
     &:hover {
         transform: scale(0.95);
@@ -19,10 +17,16 @@ const BasicButton = styled.button`
 `;
 
 export const AdvancedBtn = styled(BasicButton)`
-    background-color: #272726;
-    color: white;
-    border: 3px solid orange;
+    background-color: lightblue;
+    border: 3px solid darkblue;
 `;
+
+export const DeleteButton = styled(AdvancedBtn)`
+    background-color: red;
+    border: 3px solid black;
+    width: 30%;
+    font-weight: 700;
+`
 
 export const SmallBtn = styled(AdvancedBtn)`
     background-color: #272726;
@@ -50,6 +54,11 @@ export const FormBtn = styled(SmallBtn)`
         opacity: 0.7;
     }
 `;
+
+export const EditBtn = styled(FormBtn)`
+    background-color: lightpink;
+    border: 2px solid darkorchid;
+`
 
 
 export default BasicButton;
