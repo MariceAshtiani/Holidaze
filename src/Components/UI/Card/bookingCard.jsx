@@ -8,13 +8,15 @@ export default function BookingCard({ booking }) {
     return (
             <StyledCard>
                 <div className="BookingCardText">
-                    <p>Check in: {formatDate(booking.dateFrom)}</p>
-                    <p>Check out: {formatDate(booking.dateTo)}</p>
-                    <p>Guests: {booking.guests}</p>
-                    <p>Booking created: {formatDate(booking.created)}</p>
+                    <h4>Check in:</h4> 
+                    <p>{formatDate(booking.dateFrom)}</p>
+                    <h4>Check out:</h4>
+                    <p>{formatDate(booking.dateTo)}</p>
+                    <h4>Guests: </h4>
+                    <p>{booking.guests}</p>
+                    <h4>Booking created: </h4>
+                    <p>{formatDate(booking.created)}</p>
                 </div>
-
-                <Link to={`/venues/${booking.venueId}`}>View Venue</Link>
             </StyledCard>
     )
     

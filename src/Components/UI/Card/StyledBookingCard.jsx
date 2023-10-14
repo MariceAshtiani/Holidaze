@@ -6,4 +6,13 @@ export default styled.div`
     overflow: hidden;
     border-radius: 5%;
     width: 250px;
+
+    h4 {
+        margin: 0;
+    }
+
+    p {
+        margin-bottom: 10px;
+        margin-top: 0px;
+    }
 `
