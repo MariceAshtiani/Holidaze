@@ -69,7 +69,7 @@ export const RegistrationSuccessModal = styled(ReactModal)`
             font-size: 1.5rem;
             text-decoration: underline;
             font-style: italic;
-            color: blue;
+            color: white;
         }
 
         button {
