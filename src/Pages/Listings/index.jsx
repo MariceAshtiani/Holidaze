@@ -41,7 +41,10 @@ export default function Listings() {
             <main>
                 <StyledHeadline>Explore our diverse venue options for your next event</StyledHeadline>
                 <Search data={data} />
-                <section>{<VenueList venues={query} />}</section>
+                <section>
+                    {<VenueList 
+                    venues={query} />}
+                    </section>
             </main>
         </div>
     )

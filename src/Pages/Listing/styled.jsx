@@ -39,7 +39,29 @@ export default styled.main`
         }
     }
 
-    @media (max-width: ${({ theme }) => theme.mobile }) {
+    .bookVenue {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .booking-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .venueBookings {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+
+    @media (max-width: ${({ theme }) => theme.tablet }) {
         .venueBookings {
             display: flex;
             flex-direction: column;

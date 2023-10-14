@@ -93,15 +93,18 @@ export default function VenuePage() {
                     <section className="bookingContainer">
                     {isUserOwner 
                         ? 
-                        <div className="venueBookings">
+                        
+                        <div className="bookings">
                             <h2>Bookings for this venue:</h2>
-                            <FetchVenueBookings bookings={data?.bookings || []} />
+                            <div className="venueBookings">
+                                <FetchVenueBookings bookings={data?.bookings || []} />
+                            </div>
                         </div>
                         : (
-                            <>
+                            <div className="bookVenue">
                                 <h2>Want to book this venue?</h2>
                                 <BookingCalendar selectedVenueId={id} isOpen={isModalOpen} closeModal={closeModal} />
-                            </>
+                            </div>
                         )
                     }
                         

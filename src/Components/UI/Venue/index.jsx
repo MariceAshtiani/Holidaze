@@ -19,7 +19,13 @@ export default function VenueInfo ({ data }) {
 
                 <h2>Price: {data.price}</h2>
                 <h3>Location:</h3>
-                <p>{`${data.location?.address || ''}, ${data.location?.city || ''}, ${data.location?.country || ''}`}</p>
+                <p>
+                    {
+                        (!data.location || (!data.location.address && !data.location.city && !data.location.country))
+                        ? "No location provided"
+                        : `${data.location?.address || ''}, ${data.location?.city || ''}, ${data.location?.country || ''}`
+                    }
+                </p>
                 <h3>Description:</h3>
                 <p>{data.description}</p>
                 <h3>Max Guests:</h3>
