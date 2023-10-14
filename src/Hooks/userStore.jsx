@@ -18,7 +18,7 @@ export const useUserStore = create(
                 setVenues: (venues) => set({ venues }),
                 setVenueManager: (isVenueManager) => set({ isVenueManager }),
                 setAccessToken: (token) => set({ accessToken: token }),
-                logout: () => set({ user: null, isLoggedIn: false, isVenueManager: false, profile: null, bookings: [], venues: [], accesstoken: null }),
+                logout: () => set({ user: null, isLoggedIn: false, isVenueManager: false, profile: null, bookings: [], venues: [], accessToken: null }),
             }),
             { name : "store" }
         )
