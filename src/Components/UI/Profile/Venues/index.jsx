@@ -1,54 +1,35 @@
-import { FaWifi, FaCar, FaUtensils, FaPaw } from "react-icons/fa";
+import defaultImage from "../../../../Images/defaultimage.jpg";
 import StyledVenues from "./styled";
+import VenueCard from "../../Card";
+import { isValidImageUrl } from "../../../../Utils/ImageValidation";
+import { Link } from "react-router-dom";
 
-async function isValidImageUrl(url) {
-    try {
-        const response = await fetch(url, {
-            method: "HEAD",
-        });
-        return response.status === 200;
-    } catch (error) {
-        return false;
-    }
-}
+
 
 export default function RenderVenues({ venues }) {
   return (
     <StyledVenues>
-      <div className="venues">
         {venues.length === 0 ? (
           <p>You haven't listed any venues yet.</p>
         ) : (
-          <div className="venue-list">
-            {venues.map((venue) => (
-              <div key={venue.id} className="venue">
-                <h3>Venue Name: {venue.name}</h3>
-                <p>Price: {venue.price}</p>
-                <p>Max Guests: {venue.maxGuests}</p>
-                {/* Render other venue details here */}
-                <div className="venue-media">
-                  <h4>Media:</h4>
-                  {venue.media.map((mediaUrl, index) => (
-                    <img
-                      key={index}
-                      src={isValidImageUrl(mediaUrl) ? mediaUrl : "/src/Images/defaultimage.jpg"}
-                      alt={`Media ${index}`}
-                      className="venue-media-image"
-                    />
-                  ))}
-                </div>
-                <div className="venue-meta">
-                  <h4>Meta:</h4>
-                  {venue.meta.wifi && <p><FaWifi /> Wi-Fi</p>}
-                  {venue.meta.parking && <p><FaCar /> Parking</p>}
-                  {venue.meta.breakfast && <p><FaUtensils /> Breakfast</p>}
-                  {venue.meta.pets && <p><FaPaw /> Pets Allowed</p>}
-                </div>
-              </div>
-            ))}
-          </div>
+            venues.map((venue) => {
+              let imageUrl = defaultImage;
+              if ( venue.media.length > 0 && isValidImageUrl(venue.media[0])) {
+                imageUrl = venue.media[0];
+              }
+              return (
+                <VenueCard
+                  key={venue.id}
+                  id={venue.id}
+                  title={venue.name}
+                  price={venue.price}
+                  img={imageUrl}
+                  meta={venue.meta}
+                  rating={venue.rating}
+                />
+              )
+            })
         )}
-      </div>
-    </StyledVenues>
-  );
-}
+      </StyledVenues>
+    )
+  };

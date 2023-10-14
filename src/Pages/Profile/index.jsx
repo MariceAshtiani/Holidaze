@@ -48,6 +48,7 @@ export default function ProfilePage() {
             <HelmetProvider>
                 <Helmet>
                     <title>Holidaze | Profile</title>
+                    <link rel="stylesheet" href="https://use.typekit.net/qjo5cgi.css"></link>
                 </Helmet>
             </HelmetProvider>
             <main>
