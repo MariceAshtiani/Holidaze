@@ -9,4 +9,13 @@ export const LoaderContainer = styled.div`
     height: 150px;
     animation: spin 2s linear infinite;
     margin: 0 auto;
+
+    @keyframes spin {
+        from {
+            transform:rotate(0deg);
+        }
+        to {
+            transform:rotate(360deg);
+        }
+    }
 `;
