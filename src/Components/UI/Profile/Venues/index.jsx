@@ -2,7 +2,6 @@ import defaultImage from "../../../../Images/defaultimage.jpg";
 import StyledVenues from "./styled";
 import VenueCard from "../../Card";
 import { isValidImageUrl } from "../../../../Utils/ImageValidation";
-import { Link } from "react-router-dom";
 
 
 
