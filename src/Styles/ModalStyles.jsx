@@ -40,7 +40,7 @@ export const RegistrationSuccessModal = styled(ReactModal)`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(248, 207, 153, 0.5);
+    background-color: rgba(22, 22, 22, 0.843);
     position: fixed;
     top: 0;
     left: 0;
@@ -144,7 +144,7 @@ export const ErrorModal = styled(ReactModal)`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(233, 4, 4, 0.479);
+    background-color: rgba(22, 22, 22, 0.843);
     position: fixed;
     top: 0;
     left: 0;
@@ -259,6 +259,7 @@ export const BookingModal = styled(ReactModal)`
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 10;
 
     .bookingModal-content {
         background-color: white;
@@ -284,4 +285,93 @@ export const UpdateProfileModal = styled(ReactModal)`
     right: 0;
     bottom: 0;
 
+`;
+
+export const DeleteModal = styled(ReactModal)`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(48, 33, 33, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    .deleteModal-content {
+        background-color: rgba(82, 9, 9, 0.865);
+        color: white;
+        padding: 20px;
+        border-radius: 20px;
+        max-width: 600px;
+        width: 100%;
+        height: 50vh;
+        text-align: center;
+
+        h1 {
+            margin-bottom: 50px;
+            font-size: 2rem;
+        }
+
+        p{
+            font-size: 1.7rem;
+            margin-bottom: 50px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+            margin-top: 100px;
+        }
+    }
+
+    @media (max-width: ${({ theme }) => theme.tablet}) {
+            .errorModal-content {
+                max-width: 400px;
+                height: 40vh;
+
+                h1 {
+                    margin-bottom: 30px;
+                    font-size: 2rem;
+                }
+
+                p{
+                    font-size: 1.3rem;
+                    margin-bottom: 30px;
+                }
+
+                a{
+                    font-size: 1.2rem;
+                }
+
+                button {
+                    margin-top: 20%;
+                }
+            }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+        }
+
+        @media (max-width: ${({ theme }) => theme.mobile}) {
+            .errorModal-content {
+                max-width: 300px;
+                height: 35vh;
+                margin: 10px;
+
+
+                p{
+                    font-size: 1rem;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                }
+
+                a{
+                    font-size: 1rem;
+                }
+
+                button {
+                    margin-top: 10%;
+                }
+            }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+        }
 `;
