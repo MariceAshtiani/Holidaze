@@ -50,6 +50,11 @@ export default styled.div`
         top: 50px;
         z-index: 10;
         padding: 30px 10px;
+        border: 1px solid black;
+
+        & li {
+            margin-bottom: 10px;
+        }
     }
 
     .logoutButton {
@@ -81,19 +86,24 @@ export default styled.div`
             position: absolute;
             right: 0px;
             width: 50px;
+            font-weight: bold;
         }
 
 
         .close-icon {
         margin-top: 0;
-    }
+        }
 
-    .column-layout {
-        top: 30px;
-    }
+        .column-layout {
+            top: 30px;
+        }
 
         ul {
             font-size: 1rem;
         }
+
+        .logoutButton {
+        font-size: 16px;
+    }
     }
 `;
