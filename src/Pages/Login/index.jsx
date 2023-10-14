@@ -8,6 +8,9 @@ export default function LoginPage() {
             <HelmetProvider>
                 <Helmet>
                     <title>Holidaze | Sign in</title>
+                    <meta
+                        name="description"
+                        content="Sign in to star browsing and book venues for your next event"></meta>
                 </Helmet>
             </HelmetProvider>
             <main className="registerMain">

@@ -26,6 +26,9 @@ export default function UpdateVenuePage() {
             <HelmetProvider>
                 <Helmet>
                     <title>Holidaze | Edit Venue</title>
+                    <meta
+                        name="description"
+                        content="Update your venue"></meta>
                 </Helmet>
             </HelmetProvider>
             <main>

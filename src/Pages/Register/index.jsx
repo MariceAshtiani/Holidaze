@@ -8,6 +8,9 @@ export default function RegistrationPage() {
             <HelmetProvider>
                 <Helmet>
                     <title>Holidaze | Register</title>
+                    <meta
+                    name="description"
+                    content="Register to holidaze and start browsing for venues today"></meta>
                 </Helmet>
             </HelmetProvider>
             <main className="registerMain">

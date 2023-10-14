@@ -8,6 +8,9 @@ export default function CreateVenuePage() {
             <HelmetProvider>
                 <Helmet>
                     <title>Holidaze | Create Venue</title>
+                    <meta
+                        name="description"
+                        content="Create a venue"></meta>
                 </Helmet>
             </HelmetProvider>
             <main>

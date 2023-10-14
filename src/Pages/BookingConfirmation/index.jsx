@@ -1,10 +1,21 @@
 import StyledConfirmation from "./styled";
 import BasicButton, { AdvancedBtn } from "../../Components/UI/Buttons/styled";
 import { Link } from "react-router-dom";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 export default function BookingConfirmedPage() {
 
     return (
+    <>
+        <HelmetProvider>
+            <Helmet>
+                <title>Holidaze | Booking confirmation</title>
+                <meta
+                    name="description"
+                    content="Booking confirmation"></meta>
+            </Helmet>
+        </HelmetProvider>
+        <main>
         <StyledConfirmation>
             <div className="confirmationContainer">
                 <h1>Your booking is confirmed!</h1>
@@ -15,5 +26,7 @@ export default function BookingConfirmedPage() {
                 </Link>
             </div>
         </StyledConfirmation>
+        </main>
+        </>
     )
 }

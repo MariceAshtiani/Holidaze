@@ -59,6 +59,9 @@ export default function VenuePage() {
         <HelmetProvider>
             <Helmet>
                 <title>Holidaze | Venue</title>
+                <meta
+                        name="description"
+                        content="View details of the venue and what it has to offer and make a booking"></meta>
             </Helmet>
             </HelmetProvider>
             <StyledVenue>

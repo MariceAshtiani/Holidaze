@@ -48,6 +48,9 @@ export default function ProfilePage() {
             <HelmetProvider>
                 <Helmet>
                     <title>Holidaze | Profile</title>
+                    <meta
+                    name="description"
+                    content="In the profile page you can see your bookings"></meta>
                     <link rel="stylesheet" href="https://use.typekit.net/qjo5cgi.css"></link>
                 </Helmet>
             </HelmetProvider>
