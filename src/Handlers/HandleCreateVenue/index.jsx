@@ -1,7 +1,7 @@
-import { baseUrl, venues } from "../../Api/constants";
+import { baseUrl, listings } from "../../Api/constants";
 
 
-const url = baseUrl + venues;
+const url = baseUrl + listings;
 
 export async function HandleCreateVenueForm(data, accessToken) {
 

@@ -1,12 +1,19 @@
 import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import StyledForm from "./styled";
-import BasicButton, { FormBtn } from "../../Buttons/styled";
+import BasicButton, { FormBtn, DeleteButton, SmallBtn } from "../../Buttons/styled";
 import { useEffect } from "react";
 import Loader from "../../Loader";
+import { HandleUpdateVenue } from "../../../../Handlers/HandleEditVenue";
+import { HandleDeleteVenue } from "../../../../Handlers/HandleDelete";
+import { useUserStore } from "../../../../Hooks/userStore";
+import { DeleteModal } from "../../../../Styles/ModalStyles";
+import ReactModal from "react-modal";
+ReactModal.setAppElement("#root");
 
 
 
@@ -36,8 +43,9 @@ const schema = Yup.object({
 
 
 export default function UpdateVenueForm({ venueData }) {
-
+    const accessToken = useUserStore((state) => state.accessToken);
     const navigate = useNavigate();
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
     const { register, handleSubmit, control, setError, reset, formState: { errors } } = useForm({
         resolver: yupResolver(schema),
     });
@@ -58,6 +66,10 @@ export default function UpdateVenueForm({ venueData }) {
         }
     }, [venueData, reset, append]);
 
+    const toggleDeleteModal = () => {
+        setShowDeleteModal(!showDeleteModal);
+    }
+
 
 
     if (!venueData) {
@@ -66,18 +78,29 @@ export default function UpdateVenueForm({ venueData }) {
 
     const onSubmit = async (data) => {
         try {
-            //Send request to API here
-            const response = { ok: true, id: "123"};
-
-            if (response.ok) {
-                toast.success("Venue updated successfully!");
-                navigate(`/venues/${response.id}`);
-            } else {
-                toast.error("Error updating venue");
-            }
+            //Send request to API
+            const updatedVenue = await HandleUpdateVenue(venueData.id, data, accessToken);
+            
+            toast.success("Venue updated successfully!");
+                setTimeout(() => {
+                    navigate(`/listing/${updatedVenue.id}`);
+                }, 3000)
         } catch (error) {
             console.error(error);
             toast.error("Error updating venue");
+        }
+    };
+
+    const handleDelete = async () => {
+        try {
+            await HandleDeleteVenue(venueData.id, accessToken);
+            toast.success("Venue deleted successfully!");
+                setTimeout(() => {
+                    navigate("/listings");
+                }, 3000)
+        } catch (error) {
+            console.error(error);
+            toast.error("Error deleting venue");
         }
     };
 
@@ -161,7 +184,22 @@ export default function UpdateVenueForm({ venueData }) {
             <label>Longitude</label>
             <input {...register("location.lng")} type="number" placeholder="Longitude" />
 
-            <BasicButton type="submit" className="create-btn">Create Venue</BasicButton>
+            <BasicButton type="submit" className="create-btn">Update Venue</BasicButton>
+            <DeleteButton type="button" onClick={toggleDeleteModal}>Delete</DeleteButton>
+
+            <DeleteModal
+            isOpen={showDeleteModal}
+            onRequestClose={toggleDeleteModal}>
+                <div className="deleteModal-content">
+                    <h1>Are you sure you want to delete this venue?</h1>
+                    <p>This action cannot be undone.</p>
+                <div className="buttons">
+                    <DeleteButton type="button" onClick={handleDelete}>Delete</DeleteButton>
+                    <SmallBtn type="button" onClick={toggleDeleteModal}>Cancel</SmallBtn>
+                </div>
+                </div>
+            </DeleteModal>
+
         </StyledForm>
     );
 }
