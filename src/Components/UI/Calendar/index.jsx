@@ -9,14 +9,20 @@ import BookingForm from "../Form/BookingForm";
 import StyledCalendarContainer from "./styled";
 import { useUserStore } from "../../../Hooks/userStore";
 import { HandleBookingForm } from "../../../Handlers/BookingFormSubmit";
+import { formatDate } from "../../../Utils/DateFormatter";
 ReactModal.setAppElement("#root");
 
-export default function BookingCalendar({ selectedVenueId }) {
+export default function BookingCalendar({ selectedVenueId, isOpen, closeModal }) {
     const [availableDates, setAvailableDates] = useState([]);
     const [bookings, setBookings] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [formSubmittedSuccessfully, setFormSubmittedSuccessfully] = useState(false); 
     const { data } = ApiHook(`/venues/${selectedVenueId}?_bookings=true`, "GET");
     const user = useUserStore((state) => state.user);
+
+    const onBookingSuccess = () => {
+      setFormSubmittedSuccessfully(true);
+    };
 
     useEffect(() => {
         if (data) {
@@ -27,18 +33,18 @@ export default function BookingCalendar({ selectedVenueId }) {
           const allDates = Array.from({ length: 365 }, (_, index) => {
             const currentDate = new Date();
             currentDate.setDate(currentDate.getDate() + index);
-            return currentDate;
+            return formatDate(currentDate);
           });
       
           const bookedDateRanges = venueBookings.map((booking) => ({
-            startDate: new Date(booking.dateFrom),
-            endDate: new Date(booking.dateTo),
+            startDate: formatDate(new Date(booking.dateFrom)),
+            endDate: formatDate(new Date(booking.dateTo)),
           }));
       
           const available = allDates.filter(
             (date) =>
               !bookedDateRanges.some((booking) =>
-                isDateInRange(date, booking.startDate, booking.endDate)
+                date >= booking.startDate && date <= booking.endDate
               )
           );
       
@@ -53,25 +59,6 @@ export default function BookingCalendar({ selectedVenueId }) {
     const handleModalClose = () => {
         setIsModalOpen(false);
       };
-
-    const handleSubmitBooking = async (formData) => {
-        try {
-          const accessToken = useUserStore((state) => state.accessToken);
-            const bookingData = {
-                name: formData.name,
-                email: formData.email,
-                dateFrom: formData.dateFrom,
-                dateTo: formData.dateTo,
-                guests: formData.guests,
-                venueId: selectedVenueId,
-            };
-
-            await HandleBookingForm(bookingData, accessToken);
-            handleModalClose();
-        } catch (error) {
-            console.log(error);
-        }
-    };
 
     const isDateInRange = (dateToCheck, dateFrom, dateTo) => {
         const dateCheck = new Date(dateToCheck);
@@ -92,14 +79,12 @@ export default function BookingCalendar({ selectedVenueId }) {
                     selected={null} // No initial selected date
                     inline // Display the calendar inline without an input field
                     minDate={new Date()} // Can optionally set a minimum date, like today
-                    filterDate={(date) =>
-                        !bookings.some((booking) =>
-                        isDateInRange(date, booking.dateFrom, booking.dateTo)
-                        )
-                    }
+                    filterDate={(date) => availableDates.includes(formatDate(date))}
                     />
-                    <BasicButton onClick={handleBookNowClick} className="bookNowBtn">Book Now</BasicButton>
-                </StyledCalendarContainer>
+                    <div className="booking-button">
+                      <BasicButton onClick={handleBookNowClick} className="bookNowBtn">Book Now</BasicButton>
+                    </div> 
+               </StyledCalendarContainer>
 
                 {/*Modal for booking-form*/}
                 <BookingModal isOpen={isModalOpen}>
@@ -107,9 +92,10 @@ export default function BookingCalendar({ selectedVenueId }) {
                     <BookingForm
                     venueId={selectedVenueId}
                     availableDates={availableDates}
-                    onSubmit={handleSubmitBooking}
+                    onFormSubmit={HandleBookingForm}
                     onClose={handleModalClose}
                     user={user}
+                    onBookingSuccess={onBookingSuccess}
                     />
                     </div>
                 </BookingModal>
