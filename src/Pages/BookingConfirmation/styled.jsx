@@ -5,6 +5,9 @@ export default styled.div`
     background-image: url("/Images/confirmation.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
 
     .confirmationContainer {
         backdrop-filter: blur(10px);
@@ -32,9 +35,18 @@ export default styled.div`
         margin: 0 auto;
         margin-bottom: 7%;
         font-size: 1.3rem;
+        font-weight: 500;
     }
 
     @media (max-width: ${({ theme }) => theme.tablet}) {
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+        }
 
         p {
             margin-bottom: 10%;
@@ -50,5 +62,6 @@ export default styled.div`
             margin-bottom: 20%;
             font-size: 1rem;
         }
+
 }
 `
