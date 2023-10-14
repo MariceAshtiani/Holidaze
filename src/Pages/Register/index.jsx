@@ -12,8 +12,8 @@ export default function RegistrationPage() {
             </HelmetProvider>
             <main className="registerMain">
             <Logo></Logo>
-                <div className="registerForm">
-                    <div className="mainContainer">
+                <div className="mainContainer">
+                    <div className="registerForm">
                         <RegistrationForm />
                     </div>
                 </div>

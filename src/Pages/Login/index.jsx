@@ -12,8 +12,8 @@ export default function LoginPage() {
             </HelmetProvider>
             <main className="registerMain">
             <Logo></Logo>
-                <div className="loginForm">
-                    <div className="mainContainer">
+                <div className="mainContainer">
+                    <div className="loginForm">
                         <LoginForm />
                     </div>
                 </div>
