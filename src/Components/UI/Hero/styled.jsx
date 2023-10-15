@@ -44,7 +44,7 @@ export default styled.section`
     }
 
     .explore-btn a{
-        color: white;
+        color: black;
     }
 
     .explore-btn:hover, .explore-btn:focus{
