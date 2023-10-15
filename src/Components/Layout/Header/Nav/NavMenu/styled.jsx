@@ -73,10 +73,20 @@ export default styled.div`
         color: darkred;
     }
 
+    @media (max-width: ${({ theme }) => theme.tablet}) {
+        .logoutButton {
+            font-size: 1.8vw;
+        }
+    }
+
     @media (max-width: ${({ theme }) => theme.mobile}) {
 
         .menu-icon {
             top: 10px;
+        }
+
+        .logoutButton {
+            font-size: 2vw;
         }
     }
 `;
