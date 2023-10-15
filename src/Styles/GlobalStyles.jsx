@@ -24,8 +24,8 @@ const GlobalStyle = createGlobalStyle`
     main {
         max-width: 1500px;
         width: 100%;
-        padding: 2rem;
         margin: 0 auto;
+        padding: 10px;
     }
 
     section {
@@ -79,7 +79,7 @@ const GlobalStyle = createGlobalStyle`
         max-width: 1500px;
         margin: 0 auto;
         gap: 2rem;
-        padding: 2rem;
+        padding: 1rem;
         align-items: baseline;
 
         >* {

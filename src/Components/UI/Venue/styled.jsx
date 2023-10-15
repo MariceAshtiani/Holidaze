@@ -32,6 +32,20 @@ export default styled.div`
         gap: 20px;
     }
 
+    @media (max-width: ${({ theme }) => theme.tablet }) {
 
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    @media (max-width: ${({ theme }) => theme.mobile }) {
+
+
+        .meta {
+            display: grid;
+            grid-template: auto auto/ repeat(2, 1fr);
+        }
+    }
 
 `;

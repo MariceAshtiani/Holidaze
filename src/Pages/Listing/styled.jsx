@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export default styled.main`
+
     .img-wrapper {
         display: flex;
         flex-direction: column;
@@ -8,6 +9,8 @@ export default styled.main`
         gap: 20px;
         align-items: center;
         max-height: 60vh;
+        max-width: 900px;
+        width: 100%;
         object-fit: cover;
         margin: auto;
         overflow: hidden;
@@ -44,6 +47,10 @@ export default styled.main`
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        max-width: 400px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 20px;
     }
 
     .booking-button {
@@ -62,12 +69,36 @@ export default styled.main`
 
 
     @media (max-width: ${({ theme }) => theme.tablet }) {
+
+
+        .mainContainer {
+            display: flex;
+            flex-direction: column;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        img {
+            width: 80%;
+        }
+
+        .bookingContainer {
+            max-width: 500px;
+            width: 100%;
+        }
+
         .venueBookings {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             gap: 20px;
+        }
+    }
+
+    @media (max-width: ${({ theme }) => theme.mobile }) {
+        .mainContainer {
+            margin: 0 auto;
         }
     }
 `;

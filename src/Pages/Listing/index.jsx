@@ -54,6 +54,7 @@ export default function VenuePage() {
         setIsModalOpen(false);
     }
 
+
     return (
         <>
         <HelmetProvider>
@@ -66,7 +67,6 @@ export default function VenuePage() {
                 <link rel="stylesheet" href="https://use.typekit.net/qjo5cgi.css"></link>
             </Helmet>
         </HelmetProvider>
-            <main>
                 <StyledVenue>
                 
                 <ReactModal isOpen={isImageModalOpen} style={imageModalStyle}>
@@ -118,7 +118,6 @@ export default function VenuePage() {
                     </section>
                 </div>
                 </StyledVenue>
-            </main>
         </>
     );
 };
