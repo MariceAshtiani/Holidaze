@@ -16,9 +16,11 @@ export default styled.section`
     .heroInner {
         margin: 0 auto;
     }
+
     span {
         max-width: 50%;
     }
+
     h1 {
         font-family: adage-script-jf, sans-serif;
         font-style: normal;
@@ -27,6 +29,7 @@ export default styled.section`
         text-align: left;
         margin-left: 40px;
     }
+
     h2 {
         font-family: adage-script-jf, sans-serif;
         font-style: normal;
@@ -60,5 +63,13 @@ export default styled.section`
 
     @media (max-width: ${({ theme }) => theme.mobile}) {
         margin-bottom: 30%;
+
+        .explore-btn {
+        padding: 5px 18px;
+
+            a{
+                font-size: 0.7rem;
+            }
+        }
     }
 `;

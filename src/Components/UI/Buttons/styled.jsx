@@ -7,7 +7,6 @@ const BasicButton = styled.button`
     box-shadow: 0 0 20px black;
     color: black;
     font-weight: bold;
-    font-size: 1.2rem;
     padding: 10px 25px;
     cursor: pointer;
     &:hover {
