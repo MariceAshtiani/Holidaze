@@ -96,8 +96,30 @@ const GlobalStyle = createGlobalStyle`
 
             flex-direction: column;
 
+            a {
+                text-decoration: none;
+                font-size: 1.8vw;
+            }
+
             h1 {
-            font-size: 2.5rem;
+                font-size: 3vw;
+                text-align: center;
+            }
+
+            h2 {
+                font-size: 2.5vw;
+            }
+
+            h3 {
+                font-size: 2vw;
+            }
+
+            h4 {
+                font-size: 1.8vw;
+            }
+
+            p {
+                font-size: 1.5vw;
             }
         }
     }
