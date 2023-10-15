@@ -51,7 +51,7 @@ export default function NavMenu() {
                                             <NavLink to="/profile" className="nav-link">Profile</NavLink>
                                         </li>
                                         <li>
-                                            <button className="nav-link logoutButton" onClick={handleLogout}>Log Out</button>
+                                            <button className="nav-link logoutButton" onClick={handleLogout}>Sign out</button>
                                         </li>
                                     </>
                                 ) : (

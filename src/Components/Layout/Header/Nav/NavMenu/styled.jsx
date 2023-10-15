@@ -16,7 +16,7 @@ export default styled.div`
 
     a {
             font-weight: bold;
-            color: black;
+            color: rgba(0, 0, 0, 0.7);
         }
 
     .nav-link:hover {
@@ -29,11 +29,11 @@ export default styled.div`
     }
 
     .menu-icon {
-        font-size: 2rem;
+        font-size: 3vw;
         cursor: pointer;
-        margin-top: 15px;
         position: absolute;
         right: 0px;
+        top: 5px;
         width: 50px;
     }
 
@@ -47,9 +47,9 @@ export default styled.div`
         position: absolute;
         background-color: #F8CF99;
         right: 0;
-        top: 50px;
+        top: 15px;
         z-index: 10;
-        padding: 30px 10px;
+        padding: 20px 10px;
         border: 1px solid black;
 
         & li {
@@ -60,50 +60,23 @@ export default styled.div`
     .logoutButton {
         border: none;
         background-color: #F8CF99;
-        font-size: 1.5rem;
+        font-size: 1.3vw;
         font-weight: bold;
+        margin-top: 4px;
         color: black;
         cursor: pointer;
         padding: 0;
+        color: rgba(0, 0, 0, 0.7);
     }
 
     .logoutButton:hover {
         color: darkred;
     }
 
-
-    @media (max-width: ${({ theme }) => theme.tablet}) {
-        ul {
-        }
-    }
-
     @media (max-width: ${({ theme }) => theme.mobile}) {
 
         .menu-icon {
-            font-size: 1.5rem;
-            cursor: pointer;
-            margin-top: 5px;
-            position: absolute;
-            right: 0px;
-            width: 50px;
-            font-weight: bold;
+            top: 10px;
         }
-
-
-        .close-icon {
-        margin-top: 0;
-        }
-
-        .column-layout {
-            top: 30px;
-        }
-
-        ul {
-            font-size: 1rem;
-        }
-
-        .logoutButton {
-        font-size: 16px;
-    }
     }
 `;
