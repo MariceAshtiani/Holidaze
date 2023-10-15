@@ -5,8 +5,8 @@ export const LoaderContainer = styled.div`
     border: 16px solid orange;
     border-top: 16px solid white;
     border-radius: 50%;
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     animation: spin 2s linear infinite;
     margin: 0 auto;
 

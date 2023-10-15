@@ -15,7 +15,7 @@ export default styled.div`
     }
 
     img {
-        width: 100%;
+        max-width: 100%;
         height: 65%;
         object-position: center;
         object-fit: cover;

@@ -52,15 +52,11 @@ const GlobalStyle = createGlobalStyle`
     }
 
     h3 {
-        font-size: min(6vmin, calc(1.8rem + 0.23vmax));
-    }
-
-    h4 {
-        font-size: min(6vmin, calc(1.5rem + 0.23vmax));
+        font-size: min(6vmin, calc(1rem + 0.23vmax));
     }
 
     p {
-        font-size: min(6vmin, calc(1rem + 0.23vmax));
+        font-size: min(6vmin, calc(0.8rem + 0.23vmax));
     }
 
     li::marker {

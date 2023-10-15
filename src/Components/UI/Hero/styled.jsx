@@ -27,7 +27,7 @@ export default styled.section`
         text-align: left;
         margin-left: 40px;
     }
-    h3 {
+    h2 {
         font-family: adage-script-jf, sans-serif;
         font-style: normal;
         font-weight: 400;
