@@ -42,12 +42,24 @@ const GlobalStyle = createGlobalStyle`
     }
 
     h1 {
-        font-size: 3rem;
+        font-size: 3vw;
         text-align: center;
     }
 
+    h2 {
+        font-size: 2.5vw;
+    }
+
+    h3 {
+        font-size: 2vw;
+    }
+
+    h4 {
+        font-size: 1.7vw;
+    }
+
     p {
-        font-size: 18px;
+        font-size: 1.3vw;
     }
 
     li::marker {
