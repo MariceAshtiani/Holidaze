@@ -12,4 +12,10 @@ export default styled.div`
     text-align: center;
  }
 
+ .create {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+
 }`

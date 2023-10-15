@@ -91,9 +91,11 @@ export default function ProfilePage() {
                 <StyledVenues>
                     <div className="venues-container">
                         <h2>Your venues: ({venues.length})</h2>
+                        <div className="create">
                         <Link to="/createvenue">
                             <AdvancedBtn>Create venue</AdvancedBtn>
                         </Link>
+                        </div>
                         <RenderVenues venues={venues}/>
                     </div>
                 </StyledVenues>
