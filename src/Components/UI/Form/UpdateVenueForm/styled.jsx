@@ -61,10 +61,6 @@ export default styled.form`
         }
     }
 
-
-    
-
-
     .error{
         color: red;
         margin-top: 10px;
@@ -76,7 +72,9 @@ export default styled.form`
     }
 
     @media (max-width: ${({ theme }) => theme.tablet}) {
-
+        input {
+            height: 1.5rem;
+        }
     }
 
     @media (max-width: ${({ theme }) => theme.mobile}) {

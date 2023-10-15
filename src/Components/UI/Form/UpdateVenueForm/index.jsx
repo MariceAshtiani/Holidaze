@@ -185,7 +185,7 @@ export default function UpdateVenueForm({ venueData }) {
             <input {...register("location.lng")} type="number" placeholder="Longitude" />
 
             <BasicButton type="submit" className="create-btn">Update Venue</BasicButton>
-            <DeleteButton type="button" onClick={toggleDeleteModal}>Delete</DeleteButton>
+            <DeleteButton type="button" className="create-btn" onClick={toggleDeleteModal}>Delete</DeleteButton>
 
             <DeleteModal
             isOpen={showDeleteModal}

@@ -24,7 +24,6 @@ export const AdvancedBtn = styled(BasicButton)`
 export const DeleteButton = styled(AdvancedBtn)`
     background-color: red;
     border: 3px solid black;
-    width: 30%;
     font-weight: 700;
 `
 
@@ -45,8 +44,7 @@ export const FormBtn = styled(SmallBtn)`
     box-shadow: 0 0 10px black;
     color: black;
     font-weight: bold;
-    font-size: 1rem;
-    padding: 10px 20px;
+    padding: 5px 10px;
     cursor: pointer;
     margin-top: 10px;
     &:hover {

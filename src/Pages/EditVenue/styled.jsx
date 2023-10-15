@@ -11,13 +11,6 @@ export default styled.div`
     }
 }
 
-@media (max-width: ${({ theme }) => theme.tablet}) {
-
-h1 {
-    font-size: 2rem;
-}
-
-}
 
 @media (max-width: ${({ theme }) => theme.mobile}) {
 
@@ -25,7 +18,6 @@ h1 {
     padding-top: 10px;
 
 h1 {
-    font-size: 1.7rem;
     margin-top: 0;
 }
 
