@@ -9,6 +9,10 @@ You can browse, search, book, create, update and delete venues as you wish, depe
 This page is built using an API provided by Noroff School of Technology.
 This web application is built as my final project exam at Noroff.
 
+## Live site
+
+https://holidaze-exam-project.netlify.app/
+
 ### Stages of development
 
 - Creating user-stories and wireframes
@@ -61,19 +65,19 @@ To run this project locally, follow these steps:
    git clone https://github.com/MariceAshtiani/Holidaze.git
    ```
 
-   2. Install the project dependencies using npm or yarn.
+2. Install the project dependencies using npm or yarn.
 
    ```
    npm install
    ```
 
-2. Start the development server using npm or yarn.
+3. Start the development server using npm or yarn.
 
    ```
-   npm start
+   npm run dev
    ```
 
-3. Open your web browser and visit http://localhost:5173/ to access the app.
+4. Open your web browser and visit http://localhost:5173/ to access the app.
 
 ## Use web application
 
