@@ -13,6 +13,7 @@ export default function BookingConfirmedPage() {
                 <meta
                     name="description"
                     content="Booking confirmation"></meta>
+                    <link rel="stylesheet" href="https://use.typekit.net/qjo5cgi.css"></link>
             </Helmet>
         </HelmetProvider>
         <main>

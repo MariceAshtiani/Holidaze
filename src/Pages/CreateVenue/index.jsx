@@ -11,6 +11,7 @@ export default function CreateVenuePage() {
                     <meta
                         name="description"
                         content="Create a venue"></meta>
+                        <link rel="stylesheet" href="https://use.typekit.net/qjo5cgi.css"></link>
                 </Helmet>
             </HelmetProvider>
             <main>

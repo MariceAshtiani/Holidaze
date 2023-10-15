@@ -11,6 +11,7 @@ export default function LoginPage() {
                     <meta
                         name="description"
                         content="Sign in to star browsing and book venues for your next event"></meta>
+                        <link rel="stylesheet" href="https://use.typekit.net/qjo5cgi.css"></link>
                 </Helmet>
             </HelmetProvider>
             <main className="registerMain">

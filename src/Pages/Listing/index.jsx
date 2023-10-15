@@ -60,8 +60,10 @@ export default function VenuePage() {
             <Helmet>
                 <title>Holidaze | Venue</title>
                 <meta
-                        name="description"
-                        content="View details of the venue and what it has to offer and make a booking"></meta>
+                    name="description"
+                    content="View details of the venue and what it has to offer and make a booking">
+                </meta>
+                <link rel="stylesheet" href="https://use.typekit.net/qjo5cgi.css"></link>
             </Helmet>
             </HelmetProvider>
             <StyledVenue>

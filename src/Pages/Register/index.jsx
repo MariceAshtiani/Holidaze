@@ -11,6 +11,7 @@ export default function RegistrationPage() {
                     <meta
                     name="description"
                     content="Register to holidaze and start browsing for venues today"></meta>
+                    <link rel="stylesheet" href="https://use.typekit.net/qjo5cgi.css"></link>
                 </Helmet>
             </HelmetProvider>
             <main className="registerMain">

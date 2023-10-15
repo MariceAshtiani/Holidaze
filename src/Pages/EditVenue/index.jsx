@@ -29,6 +29,7 @@ export default function UpdateVenuePage() {
                     <meta
                         name="description"
                         content="Update your venue"></meta>
+                        <link rel="stylesheet" href="https://use.typekit.net/qjo5cgi.css"></link>
                 </Helmet>
             </HelmetProvider>
             <main>
