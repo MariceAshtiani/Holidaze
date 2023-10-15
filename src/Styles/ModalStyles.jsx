@@ -238,7 +238,7 @@ export const BookingModal = styled(ReactModal)`
     .bookingModal-content {
         background-color: white;
         max-width: 1000px;
-        width: 100%;
+        width: 80%;
         height: auto;
         padding: 20px;
         border: 2px solid orange;

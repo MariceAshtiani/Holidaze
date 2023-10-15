@@ -9,20 +9,16 @@ export default styled.form`
     width: 100%;
     height: auto;
     margin: 0 auto;
-    padding: 20px;
+    padding: 10px;
     box-shadow: 0px 0px 20px 5px rgba(246,146, 7, 0.612);
     border-radius: 20px;
     backdrop-filter: blur(10px);
     background-color: rgba(248,207,153,0.5);
-    margin-bottom: 50px;
-    margin-top: 50px;
+    margin-bottom: 30px;
+    margin-top: 30px;
 
     label {
         font-weight: 700;
-    }
-
-    h1 {
-        font-size: 2.5rem;
     }
 
     .booking-form {
@@ -30,7 +26,7 @@ export default styled.form`
     }
 
     .input-group {
-        margin-bottom: 20px;
+        margin-bottom: 5px;
     }
 
     .input-group div, .date-input > label{
@@ -59,6 +55,7 @@ export default styled.form`
         display: flex;
         flex-direction: column;
         margin-top: 20px;
+        margin-bottom: 20px;
         gap: 20px;
     }
 
@@ -78,15 +75,13 @@ export default styled.form`
     @media (max-width: ${({ theme }) => theme.tablet}) {
         margin-top: 0px;
         margin-bottom: 0px;
+
+        input {
+            height: 1.5rem;
+        }
     }
+
     @media (max-width: ${({ theme }) => theme.mobile}) {
 
-        h1{ 
-            font-size: 2rem;
-        }
-
-        label {
-            font-size: 1rem;
-        }
 }
 `;
