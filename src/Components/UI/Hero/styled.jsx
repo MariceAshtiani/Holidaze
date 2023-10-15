@@ -23,16 +23,14 @@ export default styled.section`
         font-family: adage-script-jf, sans-serif;
         font-style: normal;
         font-weight: 400;
-        font-size: 5rem;
         line-height: 2;
         text-align: left;
         margin-left: 40px;
     }
-    p {
+    h3 {
         font-family: adage-script-jf, sans-serif;
         font-style: normal;
         font-weight: 400;
-        font-size: 3rem;
         line-height: 0;
         padding-left: 7%;
     }

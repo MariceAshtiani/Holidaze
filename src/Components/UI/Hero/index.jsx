@@ -8,7 +8,7 @@ export default function Hero() {
             <div className="heroInner">
                 <span>
                     <h1>Holidaze</h1>
-                    <p>Start your journey here</p>
+                    <h3>Start your journey here</h3>
                     <BasicButton className="explore-btn">
                         <Link to="/listings">Explore</Link>
                     </BasicButton>

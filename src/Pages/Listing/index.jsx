@@ -65,8 +65,10 @@ export default function VenuePage() {
                 </meta>
                 <link rel="stylesheet" href="https://use.typekit.net/qjo5cgi.css"></link>
             </Helmet>
-            </HelmetProvider>
-            <StyledVenue>
+        </HelmetProvider>
+            <main>
+                <StyledVenue>
+                
                 <ReactModal isOpen={isImageModalOpen} style={imageModalStyle}>
                     <div className="modalImage">
                         <img src={data.media} alt={data.name}></img>
@@ -115,7 +117,8 @@ export default function VenuePage() {
                         
                     </section>
                 </div>
-            </StyledVenue>
-            </>
+                </StyledVenue>
+            </main>
+        </>
     );
 };
