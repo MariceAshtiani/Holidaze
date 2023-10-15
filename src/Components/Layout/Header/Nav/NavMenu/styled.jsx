@@ -60,7 +60,7 @@ export default styled.div`
     .logoutButton {
         border: none;
         background-color: #F8CF99;
-        font-size: 1.3vw;
+        font-size: min(6vmin, calc(1rem + 0.23vmax));
         font-weight: bold;
         margin-top: 4px;
         color: black;
@@ -73,20 +73,10 @@ export default styled.div`
         color: darkred;
     }
 
-    @media (max-width: ${({ theme }) => theme.tablet}) {
-        .logoutButton {
-            font-size: 1.8vw;
-        }
-    }
-
     @media (max-width: ${({ theme }) => theme.mobile}) {
 
         .menu-icon {
             top: 10px;
-        }
-
-        .logoutButton {
-            font-size: 2vw;
         }
     }
 `;

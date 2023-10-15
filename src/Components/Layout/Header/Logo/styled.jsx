@@ -7,7 +7,7 @@ export default styled.div`
 
         a {
             color: darkred;
-            font-size: 2vw;
+            font-size: min(6vmin, calc(2rem + 0.23vmax));
         }
 
         a:hover {

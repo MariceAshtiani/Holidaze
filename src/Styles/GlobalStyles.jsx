@@ -39,28 +39,28 @@ const GlobalStyle = createGlobalStyle`
     
     a {
         text-decoration: none;
-        font-size: 1.3vw;
+        font-size: min(6vmin, calc(1rem + 0.23vmax));
     }
 
     h1 {
-        font-size: 2.5vw;
+        font-size: min(6vmin, calc(3rem + 0.23vmax));
         text-align: center;
     }
 
     h2 {
-        font-size: 2vw;
+        font-size: min(6vmin, calc(2rem + 0.23vmax));
     }
 
     h3 {
-        font-size: 1.8vw;
+        font-size: min(6vmin, calc(1.8rem + 0.23vmax));
     }
 
     h4 {
-        font-size: 1.5vw;
+        font-size: min(6vmin, calc(1.5rem + 0.23vmax));
     }
 
     p {
-        font-size: 1vw;
+        font-size: min(6vmin, calc(1rem + 0.23vmax));
     }
 
     li::marker {
@@ -95,67 +95,8 @@ const GlobalStyle = createGlobalStyle`
         @media (max-width: ${({ theme }) => theme.tablet}) {
 
             flex-direction: column;
-
-            a {
-                text-decoration: none;
-                font-size: 1.8vw;
-            }
-
-            h1 {
-                font-size: 3vw;
-                text-align: center;
-            }
-
-            h2 {
-                font-size: 2.5vw;
-            }
-
-            h3 {
-                font-size: 2vw;
-            }
-
-            h4 {
-                font-size: 1.8vw;
-            }
-
-            p {
-                font-size: 1.5vw;
-            }
         }
     }
-   
-
-        @media (max-width: ${({ theme }) => theme.mobile}) {
-            a {
-                text-decoration: none;
-                font-size: 2vw;
-            }
-
-            h1 {
-                font-size: 3.5vw;
-                text-align: center;
-            }
-
-            h2 {
-                font-size: 3vw;
-            }
-
-            h3 {
-                font-size: 2.5vw;
-            }
-
-            h4 {
-                font-size: 2vw;
-            }
-
-            p {
-                font-size: 1.8vw;
-            }
-
-            main {
-                padding: 0;
-            }
-        }
 `;
 
 export default GlobalStyle;
