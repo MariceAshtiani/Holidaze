@@ -8,17 +8,17 @@ export default styled.div`
     margin-top: 30px;
 
     .createBtn {
-        grid-column: span 4;
+        grid-column: 1 / -1; 
         display: flex;
         justify-content: center;
+        align-items: center; 
     }
 
     .loader {
-        grid-column: span 4;
+        grid-column: 1 / -1; 
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100%;
     }
 
     @media (max-width: ${({ theme }) => theme.tablet}) {

@@ -33,7 +33,7 @@ export default function VenueList({ venues }) {
                 const venuesWithImages = await Promise.all(imagePromises);
                         setVenuesWithImages(venuesWithImages);
                         setIsLoading(false);
-                    }, 3000);
+                    }, 1500);
                     return () => {
                         clearTimeout(delayTimeout);
                     };
