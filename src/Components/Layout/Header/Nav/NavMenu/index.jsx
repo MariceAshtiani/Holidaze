@@ -14,6 +14,10 @@ export default function NavMenu() {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };
 
+    const handleLinkClick = () => {
+        setIsMobileMenuOpen(false);
+    }
+
     // Media query to check screen width
     const isMobileScreen = window.innerWidth <= 900;
 
@@ -27,46 +31,45 @@ export default function NavMenu() {
     return (
         <StyledMenu>
             <div className="menu">
-                {isMobileScreen ? (
-                    // Render hamburger menu when on mobile screen
-                    <>
-                        <div className="mobile-header">
-                            {isMobileMenuOpen ? (
-                                <FaTimes onClick={toggleMobileMenu} className="menu-icon close-icon" />
-                            ) : (
-                                <FaBars onClick={toggleMobileMenu} className="menu-icon open-icon" />
-                            )}
-                        </div>
-                        {isMobileMenuOpen && (
-                            <ul className="nav-links column-layout">
-                                <li>
-                                    <NavLink to="/" className="nav-link">Home</NavLink>
-                                </li>
-                                {isLoggedIn ? (
-                                    <>
-                                        <li>
-                                            <NavLink to="/listings" className="nav-link">Listings</NavLink>
-                                        </li>
-                                        <li>
-                                            <NavLink to="/profile" className="nav-link">Profile</NavLink>
-                                        </li>
-                                        <li>
-                                            <button className="nav-link logoutButton" onClick={handleLogout}>Sign out</button>
-                                        </li>
-                                    </>
-                                ) : (
-                                    <>
-                                        <li>
-                                            <NavLink to="/register" className="nav-link">Register</NavLink>
-                                        </li>
-                                        <li>
-                                            <NavLink to="/login" className="nav-link">Sign in</NavLink>
-                                        </li>
-                                    </>
-                                )}
-                            </ul>
+            {isMobileScreen ? (
+                <>
+                    <div className="mobile-header">
+                        {isMobileMenuOpen ? (
+                            <FaTimes onClick={toggleMobileMenu} className="menu-icon close-icon" />
+                        ) : (
+                            <FaBars onClick={toggleMobileMenu} className="menu-icon open-icon" />
                         )}
-                    </>
+                    </div>
+                    {isMobileMenuOpen && (
+                        <ul className="nav-links column-layout">
+                            <li>
+                                <NavLink to="/" className="nav-link" onClick={handleLinkClick}>Home</NavLink>
+                            </li>
+                            {isLoggedIn ? (
+                                <>
+                                    <li>
+                                        <NavLink to="/listings" className="nav-link" onClick={handleLinkClick}>Listings</NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="/profile" className="nav-link" onClick={handleLinkClick}>Profile</NavLink>
+                                    </li>
+                                    <li>
+                                        <button className="nav-link logoutButton" onClick={handleLogout}>Sign out</button>
+                                    </li>
+                                </>
+                            ) : (
+                                <>
+                                    <li>
+                                        <NavLink to="/register" className="nav-link" onClick={handleLinkClick}>Register</NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="/login" className="nav-link" onClick={handleLinkClick}>Sign in</NavLink>
+                                    </li>
+                                </>
+                            )}
+                        </ul>
+                    )}
+                </>
                 ) : (
                     // Render desktop menu for screens larger than 900px
                     <ul className="nav-links">

@@ -13,16 +13,4 @@ export default styled.div`
         a:hover {
             color: darkorange;
         }
-
-        @media (max-width: ${({ theme }) => theme.tablet}) {
-            a {
-                font-size: 2.5vw;
-            }
-        }
-
-        @media (max-width: ${({ theme }) => theme.mobile}) {
-            a {
-                font-size: 3vw;
-            }
-        }
 `;

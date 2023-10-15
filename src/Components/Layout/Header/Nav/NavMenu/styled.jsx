@@ -29,7 +29,7 @@ export default styled.div`
     }
 
     .menu-icon {
-        font-size: 3vw;
+        font-size: min(6vmin, calc(1.5rem + 0.23vmax));
         cursor: pointer;
         position: absolute;
         right: 0px;
@@ -50,7 +50,6 @@ export default styled.div`
         top: 15px;
         z-index: 10;
         padding: 20px 10px;
-        border: 1px solid black;
 
         & li {
             margin-bottom: 10px;
@@ -73,10 +72,25 @@ export default styled.div`
         color: darkred;
     }
 
+
+    @media (max-width: ${({ theme }) => theme.tablet}) {
+        .menu-icon {
+            top: 15px;
+        }
+
+        .column-layout {
+            top: 30px;
+        }
+    }
+
     @media (max-width: ${({ theme }) => theme.mobile}) {
 
         .menu-icon {
             top: 10px;
+        }
+
+        .column-layout {
+            top: 20px;
         }
     }
 `;
