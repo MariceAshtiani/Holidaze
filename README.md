@@ -21,7 +21,7 @@ This web application is built as my final project exam at Noroff.
 
 ### Planning
 
-![image]({https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=trello&logoColor=white}) Trello
+<img src="https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=trello&logoColor=white" /> Trello
 
 ### Designing
 
