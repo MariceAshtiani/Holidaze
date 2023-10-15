@@ -1,6 +1,7 @@
 import RegistrationForm from "../../Components/UI/Form/RegisterForm";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import Logo from "../../Components/UI/Logo";
+import StyledPage from "./styled";
 
 export default function RegistrationPage() {
     return (
@@ -17,9 +18,11 @@ export default function RegistrationPage() {
             <main className="registerMain">
             <Logo></Logo>
                 <div className="mainContainer">
-                    <div className="registerForm">
-                        <RegistrationForm />
-                    </div>
+                    <StyledPage>
+                        <div className="registerForm">
+                            <RegistrationForm />
+                        </div>
+                    </StyledPage>
                 </div>
             </main>
         </>

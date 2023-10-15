@@ -5,9 +5,13 @@ export default styled.div`
     text-align: center;
 
     img {
-        max-width: 500px;
+        max-width: 400px;
         width: 100%;
-        margin-bottom: 5%;
-        margin-top: 5%;
     }
+
+    @media (max-width: ${({ theme }) => theme.tablet}) {
+        img {
+            width: 50%;
+        }
+}
 `;

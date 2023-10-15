@@ -8,14 +8,15 @@ export default styled.form`
     max-width: 1000px;
     width: 100%;
     margin: 0 auto;
-    padding: 30px;
+    padding-top: 0px;
+    padding-bottom: 20px;
     box-shadow: 0px 0px 20px 5px rgba(246,146, 7, 0.612);
     border-radius: 20px;
     backdrop-filter: blur(10px);
     background-color: rgba(248,207,153,0.5);
 
     h1 {
-        margin-bottom: 5%;
+        margin-bottom: 10px;
     }
 
     .input-group {
@@ -78,10 +79,6 @@ export default styled.form`
 
     @media (max-width: ${({ theme }) => theme.tablet}) {
 
-        label {
-            font-size:1rem;
-        }
-
         button {
             margin-top: 30px;
         }
@@ -92,14 +89,6 @@ export default styled.form`
         .input-group div {
             display: block;
             max-width: 100%;
-        }
-
-        h1{ 
-            font-size: 2rem;
-        }
-
-        label {
-            font-size: 1.5;
         }
 
         button {

@@ -43,19 +43,19 @@ const GlobalStyle = createGlobalStyle`
     }
 
     h1 {
-        font-size: min(6vmin, calc(3rem + 0.23vmax));
+        font-size: min(6vmin, calc(2rem + 0.23vmax));
         text-align: center;
     }
 
     h2 {
-        font-size: min(6vmin, calc(2rem + 0.23vmax));
+        font-size: min(6vmin, calc(1.8rem + 0.23vmax));
     }
 
     h3 {
         font-size: min(6vmin, calc(1rem + 0.23vmax));
     }
 
-    p {
+    p, label {
         font-size: min(6vmin, calc(0.8rem + 0.23vmax));
     }
 
@@ -90,7 +90,6 @@ const GlobalStyle = createGlobalStyle`
 
         @media (max-width: ${({ theme }) => theme.tablet}) {
 
-            flex-direction: column;
         }
     }
 `;
