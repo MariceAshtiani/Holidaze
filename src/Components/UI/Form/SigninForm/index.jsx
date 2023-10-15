@@ -95,7 +95,7 @@ export default function LoginForm() {
 
             <div className="goToSignin">
                 <p>Are you not registered?</p>
-                <a href="/Register">Register here</a>
+                <a href="/register">Register here</a>
             </div>
         </StyledForm>
 
