@@ -1,9 +1,9 @@
 import StyledProfile from "./styled";
 import ProfileHero from "./Hero";
+import defaultAvatar from "../../../Images/defaultAvatar.jpg";
 
 export default function RenderProfile({ profileData }) {
     const { name, email, avatar, } = profileData;
-    const defaultAvatar = "/src/Images/defaultAvatar.jpg";
 
     const handleImageError = (e) => {
         e.target.src = defaultAvatar;

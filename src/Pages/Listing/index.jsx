@@ -8,6 +8,7 @@ import ApiHook from "../../Hooks/apiFetch";
 import { listings } from "../../Api/constants";
 import Loader from "../../Components/UI/Loader";
 import {SmallBtn, EditBtn} from "../../Components/UI/Buttons/styled";
+import defaultImage from "../../Images/defaultimage.jpg";
 import { imageModalStyle } from "../../Styles/ModalStyles";
 import StyledVenue from "./styled";
 import VenueInfo from "../../Components/UI/Venue";
@@ -23,7 +24,6 @@ export default function VenuePage() {
     const { data, isLoading, isError } = ApiHook(url);
     const [isImageModalOpen, setIsImageModalOpen] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(true);
-    const defaultImage = "/src/Images/defaultimage.jpg";
     const { user, isVenueManager, venues } = useUserStore(state => ({
         user: state.user,
         isVenueManager: state.isVenueManager,
