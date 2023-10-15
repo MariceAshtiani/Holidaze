@@ -48,7 +48,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     h2 {
-        font-size: min(6vmin, calc(1.6rem + 0.23vmax));
+        font-size: min(6vmin, calc(1.4rem + 0.23vmax));
         font-weight: 600;
     }
 

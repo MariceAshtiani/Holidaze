@@ -14,7 +14,7 @@ export default styled.div`
         background-color: rgba(152, 152, 152, 0.407);
         max-width: 1500px;
         width: 100%;
-        height: 50vh;
+        height: auto;
         margin: 0 auto;
         padding: 40px;
         margin-top: 40px;
@@ -27,26 +27,16 @@ export default styled.div`
 
     h2 {
         margin-bottom: 40px;
-        font-size: 2rem;
     }
 
     p {
         max-width: 900px;
         margin: 0 auto;
         margin-bottom: 7%;
-        font-size: 1.3rem;
         font-weight: 500;
     }
 
     @media (max-width: ${({ theme }) => theme.tablet}) {
-
-        h1 {
-            font-size: 2.5rem;
-        }
-
-        h2 {
-            font-size: 1.6rem;
-        }
 
         p {
             margin-bottom: 10%;
@@ -54,13 +44,9 @@ export default styled.div`
 }
 
     @media (max-width: ${({ theme }) => theme.mobile}) {
-        h2 {
-            font-size: 1.2rem;
-        }
 
         p {
             margin-bottom: 20%;
-            font-size: 1rem;
         }
 
 }
