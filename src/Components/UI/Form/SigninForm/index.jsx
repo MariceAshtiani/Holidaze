@@ -9,6 +9,7 @@ import ReactModal from "react-modal";
 import { ErrorModal } from "../../../../Styles/ModalStyles";
 import { useUserStore } from "../../../../Hooks/userStore";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 //Validation schema using Yup
 
@@ -95,7 +96,7 @@ export default function LoginForm() {
 
             <div className="goToSignin">
                 <p>Are you not registered?</p>
-                <a href="/register">Register here</a>
+                <Link to="/register">Register here</Link>
             </div>
         </StyledForm>
 
@@ -108,8 +109,8 @@ export default function LoginForm() {
                 <h1>Error</h1>
                 <p>{errorMessage}</p>
                 <div className="already-registered">
-                    <span>Are you not registered?</span>
-                    <a href="/Register">Register here</a>
+                    <p>Are you not registered?</p>
+                    <Link to="/register">Register here</Link>
                 </div>
                 <div>
                     <button onClick={closeErrorModal}>Close</button>

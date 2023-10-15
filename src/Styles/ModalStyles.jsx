@@ -53,23 +53,25 @@ export const RegistrationSuccessModal = styled(ReactModal)`
         border-radius: 20px;
         max-width: 600px;
         width: 100%;
-        height: 50vh;
+        height: auto;
         text-align: center;
 
         h1 {
             margin-bottom: 50px;
         }
 
-        p{
-            font-size: 2rem;
+        h2{
             margin-bottom: 50px;
         }
 
         a{
-            font-size: 1.5rem;
             text-decoration: underline;
             font-style: italic;
             color: white;
+
+            &:hover {
+                color: blue;
+            }
         }
 
         button {
@@ -79,7 +81,7 @@ export const RegistrationSuccessModal = styled(ReactModal)`
             padding: 10px 20px;
             cursor: pointer;
             border-radius: 4px;
-            margin-top: 30%;
+            margin-top: 40px;
             transition: background-color 0.2s;
 
             &:hover {
@@ -91,24 +93,17 @@ export const RegistrationSuccessModal = styled(ReactModal)`
     @media (max-width: ${({ theme }) => theme.tablet}) {
             .modal-content {
                 max-width: 400px;
-                height: 30vh;
 
                 h1 {
                     margin-bottom: 30px;
-                    font-size: 2rem;
                 }
 
-                p{
-                    font-size: 1.5rem;
+                h2{
                     margin-bottom: 30px;
                 }
 
-                a{
-                    font-size: 1.2rem;
-                }
-
                 button {
-                    margin-top: 20%;
+                    margin-top: 30px;
                 }
             }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
         }
@@ -116,25 +111,19 @@ export const RegistrationSuccessModal = styled(ReactModal)`
         @media (max-width: ${({ theme }) => theme.mobile}) {
             .modal-content {
                 max-width: 300px;
-                height: 20vh;
                 margin: 10px;
 
                 h1 {
                     margin-bottom: 0px;
                 }
 
-                p{
-                    font-size: 1rem;
+                h2{
                     margin-top: 10px;
                     margin-bottom: 10px;
                 }
 
-                a{
-                    font-size: 1rem;
-                }
-
                 button {
-                    margin-top: 10%;
+                    margin-top: 20px;
                 }
             }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
         }
@@ -158,30 +147,32 @@ export const ErrorModal = styled(ReactModal)`
         border-radius: 20px;
         max-width: 600px;
         width: 100%;
-        height: 50vh;
+        height: auto;
         text-align: center;
 
         h1 {
-            margin-bottom: 50px;
+            margin-bottom: 30px;
         }
 
-        p{
-            font-size: 1.7rem;
+        h2{
             margin-bottom: 50px;
         }
 
         a{
-            font-size: 1.5rem;
             text-decoration: underline;
             font-style: italic;
             color: yellow;
             margin-top: 10px;
+
+            &:hover {
+                color: white;
+            }
         }
 
         .already-registered{
             display: flex;
             flex-direction: column;
-            margin-top: 20%;
+            margin-top: 50px;
         }
 
         button {
@@ -203,24 +194,13 @@ export const ErrorModal = styled(ReactModal)`
     @media (max-width: ${({ theme }) => theme.tablet}) {
             .errorModal-content {
                 max-width: 400px;
-                height: 40vh;
 
-                h1 {
+                h2{
                     margin-bottom: 30px;
-                    font-size: 2rem;
-                }
-
-                p{
-                    font-size: 1.3rem;
-                    margin-bottom: 30px;
-                }
-
-                a{
-                    font-size: 1.2rem;
                 }
 
                 button {
-                    margin-top: 20%;
+                    margin-top: 40px;
                 }
             }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
         }
@@ -228,18 +208,12 @@ export const ErrorModal = styled(ReactModal)`
         @media (max-width: ${({ theme }) => theme.mobile}) {
             .errorModal-content {
                 max-width: 300px;
-                height: 35vh;
                 margin: 10px;
 
 
-                p{
-                    font-size: 1rem;
+                h2{
                     margin-top: 10px;
                     margin-bottom: 10px;
-                }
-
-                a{
-                    font-size: 1rem;
                 }
 
                 button {

@@ -8,6 +8,7 @@ import StyledForm from "./styled";
 import { RegistrationSuccessModal, ErrorModal } from "../../../../Styles/ModalStyles";
 import { useState } from "react";
 import ReactModal from "react-modal";
+import { Link } from "react-router-dom";
 
 //Validation schema using Yup
 
@@ -112,7 +113,7 @@ export default function RegistrationForm() {
 
             <div className="goToSignin">
                 <p>Do you already have an account?</p>
-                <a href="/login">Sign in here</a>
+                <Link to="/login">Sign in here</Link>
             </div>
         </StyledForm>
 
@@ -123,10 +124,10 @@ export default function RegistrationForm() {
         >
             <div className="errorModal-content">
                 <h1>Error</h1>
-                <p>{errorMessage}</p>
+                <h2>{errorMessage}</h2>
                 <div className="already-registered">
-                    <span>Maybe you are already registered?</span>
-                    <a href="/Login">Sign in instead</a>
+                    <p>Maybe you are already registered?</p>
+                    <Link to="/login">Sign in instead</Link>
                 </div>
                 <div>
                     <button onClick={closeErrorModal}>Close</button>
@@ -141,8 +142,8 @@ export default function RegistrationForm() {
         >
             <div className="modal-content">
                 <h1>Success!</h1>
-                <p>{successMessage}</p>
-                <a href="/Login">Sign in here!</a>
+                <h2>{successMessage}</h2>
+                <Link to="/login">Sign in here!</Link>
                 <div>
                 <button onClick={closeSuccessModal}>Close</button>
                 </div>
