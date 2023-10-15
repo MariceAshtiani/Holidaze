@@ -65,7 +65,9 @@ const GlobalStyle = createGlobalStyle`
 
     .registerMain {
         background-image: URL("/Images/background-image.jpg");
-        height: 120vh;
+        background-attachment: fixed;
+        height: 100%;
+        min-height: 600px;
         max-width: 2000px;
         width: 100%;
         background-repeat: no-repeat;

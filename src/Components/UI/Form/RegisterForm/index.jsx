@@ -75,7 +75,7 @@ export default function RegistrationForm() {
     return (
         <div>
         <StyledForm onSubmit={handleSubmit(onSubmit)}>
-            <h1>Register</h1>
+            <h2>Register</h2>
 
             <div className="input-group">
             <div>

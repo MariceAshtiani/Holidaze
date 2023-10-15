@@ -15,8 +15,9 @@ export default styled.form`
     backdrop-filter: blur(10px);
     background-color: rgba(248,207,153,0.5);
 
-    h1 {
-        margin-bottom: 10px;
+    h2 {
+        margin: 0 auto;
+        padding: 20px;
     }
 
     .input-group {
@@ -78,6 +79,12 @@ export default styled.form`
     }
 
     @media (max-width: ${({ theme }) => theme.tablet}) {
+
+
+        input {
+        width: 100%;
+        height: 1.5rem;
+        }
 
         button {
             margin-top: 30px;
