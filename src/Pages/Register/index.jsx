@@ -16,14 +16,12 @@ export default function RegistrationPage() {
                 </Helmet>
             </HelmetProvider>
             <main className="registerMain">
-            <Logo></Logo>
-                <div className="mainContainer">
-                    <StyledPage>
+                <StyledPage>
+                     <Logo></Logo>
                         <div className="registerForm">
                             <RegistrationForm />
                         </div>
-                    </StyledPage>
-                </div>
+                </StyledPage>
             </main>
         </>
     );
