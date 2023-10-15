@@ -239,6 +239,7 @@ export const BookingModal = styled(ReactModal)`
         background-color: white;
         max-width: 1000px;
         width: 80%;
+        max-height: 100vh;
         height: auto;
         padding: 20px;
         border: 2px solid orange;
