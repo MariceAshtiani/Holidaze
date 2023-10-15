@@ -96,9 +96,5 @@ export default styled.main`
         }
     }
 
-    @media (max-width: ${({ theme }) => theme.mobile }) {
-        .mainContainer {
-            margin: 0 auto;
-        }
-    }
+    
 `;

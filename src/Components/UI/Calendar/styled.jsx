@@ -49,5 +49,11 @@ export default styled.div`
     }
     }
 
+    @media (max-width: 420px) {
+    .react-datepicker {
+        display: none;
+    }
+    }
+
 
 `
