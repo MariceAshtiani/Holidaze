@@ -192,7 +192,7 @@ export default function UpdateVenueForm({ venueData }) {
             onRequestClose={toggleDeleteModal}>
                 <div className="deleteModal-content">
                     <h1>Are you sure you want to delete this venue?</h1>
-                    <p>This action cannot be undone.</p>
+                    <h2>This action cannot be undone.</h2>
                 <div className="buttons">
                     <DeleteButton type="button" onClick={handleDelete}>Delete</DeleteButton>
                     <SmallBtn type="button" onClick={toggleDeleteModal}>Cancel</SmallBtn>

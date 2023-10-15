@@ -279,16 +279,14 @@ export const DeleteModal = styled(ReactModal)`
         border-radius: 20px;
         max-width: 600px;
         width: 100%;
-        height: 50vh;
+        height: auto;
         text-align: center;
 
         h1 {
             margin-bottom: 50px;
-            font-size: 2rem;
         }
 
-        p{
-            font-size: 1.7rem;
+        h2{
             margin-bottom: 50px;
         }
 
@@ -297,54 +295,41 @@ export const DeleteModal = styled(ReactModal)`
             flex-direction: column;
             align-items: center;
             gap: 50px;
-            margin-top: 100px;
+            margin-top: 50px;
         }
     }
 
     @media (max-width: ${({ theme }) => theme.tablet}) {
-            .errorModal-content {
+            .deleteModal-content {
                 max-width: 400px;
-                height: 40vh;
 
                 h1 {
                     margin-bottom: 30px;
-                    font-size: 2rem;
                 }
 
-                p{
-                    font-size: 1.3rem;
+                h2{
                     margin-bottom: 30px;
                 }
 
-                a{
-                    font-size: 1.2rem;
-                }
-
                 button {
-                    margin-top: 20%;
+                    margin-top: 20px;
                 }
             }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
         }
 
         @media (max-width: ${({ theme }) => theme.mobile}) {
-            .errorModal-content {
+            .deleteModal-content {
                 max-width: 300px;
-                height: 35vh;
                 margin: 10px;
 
 
-                p{
-                    font-size: 1rem;
+                h2{
                     margin-top: 10px;
                     margin-bottom: 10px;
                 }
 
-                a{
-                    font-size: 1rem;
-                }
-
-                button {
-                    margin-top: 10%;
+                .buttons {
+                    gap: 20px;
                 }
             }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
         }
