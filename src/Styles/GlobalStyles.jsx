@@ -126,8 +126,30 @@ const GlobalStyle = createGlobalStyle`
    
 
         @media (max-width: ${({ theme }) => theme.mobile}) {
+            a {
+                text-decoration: none;
+                font-size: 2vw;
+            }
+
             h1 {
-                font-size: 1.5rem;
+                font-size: 3.5vw;
+                text-align: center;
+            }
+
+            h2 {
+                font-size: 3vw;
+            }
+
+            h3 {
+                font-size: 2.5vw;
+            }
+
+            h4 {
+                font-size: 2vw;
+            }
+
+            p {
+                font-size: 1.8vw;
             }
 
             main {
