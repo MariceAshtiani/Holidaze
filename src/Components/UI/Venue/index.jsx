@@ -12,9 +12,6 @@ export default function VenueInfo ({ data }) {
 
                 <div className="rating">
                     <Rating rating={hasRatings ? data.rating : 0} hasRatings={hasRatings} />
-                        <span className="rating-count">
-                            ({hasRatings ? Math.round(data.rating) : '0 Ratings'})
-                        </span>
                 </div>
 
                 <h2>Price: {data.price}</h2>

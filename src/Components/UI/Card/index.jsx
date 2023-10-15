@@ -33,9 +33,6 @@ export default function VenueCard({ id, title, price, img, meta, rating, ownerEm
                     <div className="card-bottom">
                         <div className="rating">
                             <Rating rating={rating} hasRatings={hasRatings} />
-                            <span className="rating-count">
-                                {hasRatings ? `(${rating})` : "(0)"}
-                            </span>
                         </div>
                         {isUserVenue && (
                             <Link to={`/editvenue/${id}`}>
